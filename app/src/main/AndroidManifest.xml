@@ -9,17 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.shop_detail"></activity>
-        <activity android:name=".Activity.update_profile" />
-        <activity android:name=".Activity.login">
+        <activity android:name=".Activity.SplaceScreen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.shop_detail" />
+        <activity android:name=".Activity.update_profile" />
+        <activity android:name=".Activity.login"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        </activity>
         <activity android:name=".Activity.user_home" />
         <activity android:name=".Activity.MainActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

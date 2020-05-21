@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import com.jayneel.thebarber_user.R
 import com.jayneel.thebarber_user.module.userData
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
