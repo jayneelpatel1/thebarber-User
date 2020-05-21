@@ -34,8 +34,8 @@ class shopIteamAdapter(var ctx:Activity,var arlist:ArrayList<iteamModule>):Recyc
     }
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
-        holder.name.text= arlist[position].name +"₹"
-        holder.price.text= arlist[position].price
+        holder.name.text= arlist[position].name
+        holder.price.text= arlist[position].price+" ₹"
 
         holder.itemView.chkbook.setOnCheckedChangeListener { buttonView, isChecked ->
             val list=arlist[position]
