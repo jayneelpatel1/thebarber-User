@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -30,7 +31,7 @@ class shop_detail : AppCompatActivity() {
         val myRef = database.getReference("Category")
 
         var data= arrayListOf<iteamModule>()
-
+        var selected= arrayListOf<iteamModule>()
         myRef.child(sunm).addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -42,6 +43,7 @@ class shop_detail : AppCompatActivity() {
                         data.add(value)
                     }
                 }
+                selected=ad.getselectedlist()
                 rviteam.adapter=ad
 
 
@@ -54,7 +56,9 @@ class shop_detail : AppCompatActivity() {
             }
         })
 //
-
+        fab_book.setOnClickListener {
+            Toast.makeText(this,"$selected",Toast.LENGTH_LONG).show()
+        }
         rviteam.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
 
     }

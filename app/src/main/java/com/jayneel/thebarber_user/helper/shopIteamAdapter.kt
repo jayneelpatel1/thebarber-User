@@ -9,9 +9,15 @@ import com.jayneel.thebarber_user.module.iteamModule
 import kotlinx.android.synthetic.main.shop_iteam_list.view.*
 
 class shopIteamAdapter(var ctx:Activity,var arlist:ArrayList<iteamModule>):RecyclerView.Adapter<shopIteamAdapter.viewholder>() {
+
+
+
+    var chekedteacher=ArrayList<iteamModule>()
+
     inner class viewholder(v:View):RecyclerView.ViewHolder(v){
         var name=v.lbliteamnm
         var price=v.lblprice
+        var chk=v.chkbook
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewholder {
@@ -22,9 +28,26 @@ class shopIteamAdapter(var ctx:Activity,var arlist:ArrayList<iteamModule>):Recyc
     override fun getItemCount(): Int {
         return arlist.size
     }
+    fun getselectedlist():ArrayList<iteamModule>
+    {
+        return chekedteacher
+    }
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
         holder.name.text= arlist[position].name +"₹"
         holder.price.text= arlist[position].price
+
+        holder.itemView.chkbook.setOnCheckedChangeListener { buttonView, isChecked ->
+            val list=arlist[position]
+            if(isChecked)
+            {
+                chekedteacher.add(list)
+            }
+            else
+            {
+                chekedteacher.remove(list)
+            }
+
+        }
     }
 }
