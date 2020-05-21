@@ -32,6 +32,7 @@ class shop_detail : AppCompatActivity() {
         var data= arrayListOf<iteamModule>()
 
         myRef.child(sunm).addValueEventListener(object : ValueEventListener {
+
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var ad= shopIteamAdapter(this@shop_detail,data)
                 for(v in dataSnapshot.children) {
@@ -43,6 +44,7 @@ class shop_detail : AppCompatActivity() {
                 }
                 rviteam.adapter=ad
 
+
 //                Log.d(FragmentActivity.TAG, "Value is: $value")
             }
 
@@ -51,6 +53,8 @@ class shop_detail : AppCompatActivity() {
                 //              Log.w(FragmentActivity.TAG, "Failed to read value.", error.toException())
             }
         })
+//
+
         rviteam.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
 
     }

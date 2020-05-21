@@ -42,8 +42,7 @@ class MainActivity : AppCompatActivity() {
                 edt.putString("unm",edtname.text.toString())
                 edt.apply()
                 edt.commit()
-                startActivity(Intent(this,
-                    user_home::class.java))
+                startActivity(Intent(this, user_home::class.java))
                 finish()
             }
            }

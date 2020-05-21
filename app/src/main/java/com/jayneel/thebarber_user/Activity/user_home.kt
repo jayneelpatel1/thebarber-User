@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -33,6 +34,8 @@ class user_home : AppCompatActivity() {
 
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                data.clear()
+                pbhome.visibility=View.VISIBLE
                 var ad=shopListAdapter(this@user_home,data)
               for(v in dataSnapshot.children) {
                   val value = v.getValue(shopModule::class.java)
@@ -41,6 +44,7 @@ class user_home : AppCompatActivity() {
                         data.add(value)
                   }
               }
+                pbhome.visibility=View.GONE
                 rv.adapter=ad
 
 //                Log.d(FragmentActivity.TAG, "Value is: $value")

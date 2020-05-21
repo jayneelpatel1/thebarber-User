@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class login : AppCompatActivity() {
 // Write a message to the database
-
     val database = FirebaseDatabase.getInstance()
     val myRef = database.getReference("userdata")
     override fun onCreate(savedInstanceState: Bundle?) {

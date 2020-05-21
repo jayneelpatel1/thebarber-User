@@ -12,11 +12,10 @@ class shopIteamAdapter(var ctx:Activity,var arlist:ArrayList<iteamModule>):Recyc
     inner class viewholder(v:View):RecyclerView.ViewHolder(v){
         var name=v.lbliteamnm
         var price=v.lblprice
-        var chk=v.chkbook
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewholder {
-       var view=ctx.layoutInflater.inflate(R.layout.shop_list_cust,parent,false)
+       var view=ctx.layoutInflater.inflate(R.layout.shop_iteam_list,parent,false)
         return viewholder(view)
     }
 
@@ -25,7 +24,7 @@ class shopIteamAdapter(var ctx:Activity,var arlist:ArrayList<iteamModule>):Recyc
     }
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
-        holder.name.text= arlist[position].name
+        holder.name.text= arlist[position].name +"₹"
         holder.price.text= arlist[position].price
     }
 }
