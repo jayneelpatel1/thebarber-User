@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,9 +19,11 @@ import com.jayneel.thebarber_user.helper.shopListAdapter
 import com.jayneel.thebarber_user.module.shopModule
 import kotlinx.android.synthetic.main.activity_user_home.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
+import java.util.*
 
 class user_home : AppCompatActivity() {
-
+    var data= arrayListOf<shopModule>()
+    var displaylist= arrayListOf<shopModule>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_home)
@@ -31,14 +34,16 @@ class user_home : AppCompatActivity() {
 
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("Shop")
-        var data= arrayListOf<shopModule>()
-       // var ad=shopListAdapter(this,data)
+
+
+
+        // var ad=shopListAdapter(this,data)
 
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 data.clear()
                 pbhome.visibility=View.VISIBLE
-                var ad=shopListAdapter(this@user_home,data)
+                var ad=shopListAdapter(this@user_home,displaylist)
               for(v in dataSnapshot.children) {
                   val value = v.getValue(shopModule::class.java)
                   Log.d("key",value.toString())
@@ -46,6 +51,7 @@ class user_home : AppCompatActivity() {
                         data.add(value)
                   }
               }
+                displaylist.addAll(data)
                 pbhome.visibility=View.GONE
                 rv.adapter=ad
 
@@ -66,6 +72,37 @@ class user_home : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.optionmenu,menu)
+        var searchiteam=menu!!.findItem(R.id.action_search)
+        if(searchiteam !=null){
+            val searchview=searchiteam.actionView as SearchView
+            searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if(newText!!.isNotEmpty()){
+                        displaylist.clear()
+                        val serch=newText.toLowerCase(Locale.getDefault())
+                        data.forEach {
+                            if(it.shopName!!.toLowerCase(Locale.getDefault()).contains(serch))
+                            {
+                                displaylist.add(it)
+                            }
+                        }
+                        rv.adapter!!.notifyDataSetChanged()
+                    }
+                    else
+                    {
+                        displaylist.clear()
+                        displaylist.addAll(data)
+                        rv.adapter!!.notifyDataSetChanged()
+                    }
+                    return true
+                }
+
+            })
+        }
         return super.onCreateOptionsMenu(menu)
     }
 
