@@ -73,23 +73,19 @@ class shop_detail : AppCompatActivity() {
                         val value =dataSnapshot.getValue(shopModule::class.java)
                         Log.d("key",value.toString())
                         if (value != null) {
-                            time=value.openingtime.toString()
+                            time=value.openingTime.toString()
+                            var builder=AlertDialog.Builder(this@shop_detail)
+                            builder.setTitle("Confirm Booking")
+                            builder.setMessage("You have selected ${selected.size} and your booking appoinment on ${time.toString()}")
+                            builder.show()
                         }
                     }
-
-
-
-//                Log.d(FragmentActivity.TAG, "Value is: $value")
-
                 override fun onCancelled(error: DatabaseError) {
                     // Failed to read value
                     //              Log.w(FragmentActivity.TAG, "Failed to read value.", error.toException())
                 }
             })
-            var builder=AlertDialog.Builder(this)
-            builder.setTitle("Confirm Booking")
-            builder.setMessage("You have selected ${selected.size} and your booking appoinment on ${time.toString()}")
-            builder.show()
+
 
 
 
