@@ -63,29 +63,39 @@ class shop_detail : AppCompatActivity() {
         fab_book.setOnClickListener {
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference("appinment")
-            val ref=database.getReference("shop")
+            val ref=database.getReference("Shop")
             var time:String?=null
-            ref.child(sunm).addListenerForSingleValueEvent(object :ValueEventListener{
-                override fun onCancelled(p0: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
 
-                override fun onDataChange(p0: DataSnapshot) {
-                    for(v in p0.children){
-                        var value=v.getValue(shopModule::class.java)
+            ref.child(sunm).addValueEventListener(object : ValueEventListener {
+
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                  //  var ad= shopIteamAdapter(this@shop_detail,data)
+                    for(v in dataSnapshot.children) {
+                        val value = v.getValue(iteamModule::class.java)
+                        Log.d("key",value.toString())
                         if (value != null) {
-                            time=value.oprningtime.toString()
+                            data.add(value)
                         }
                     }
+                    selected=ad.getselectedlist()
+                    rviteam.adapter=ad
+
+
+//                Log.d(FragmentActivity.TAG, "Value is: $value")
                 }
 
+                override fun onCancelled(error: DatabaseError) {
+                    // Failed to read value
+                    //              Log.w(FragmentActivity.TAG, "Failed to read value.", error.toException())
+                }
             })
+
 
 
 
                 var builder=AlertDialog.Builder(this)
                 builder.setTitle("Confirm Booking")
-                builder.setMessage("You have selected ${selected.size} and your booking appoinment on $time")
+                builder.setMessage("You have selected ${selected.size} and your booking appoinment on ${time.toString()}")
                 builder.show()
 
 //            var int1=Intent(this,confirm::class.java)
