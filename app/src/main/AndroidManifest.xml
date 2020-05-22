@@ -8,8 +8,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Activity.confirm"></activity>
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".Activity.custom_actionbar"></activity>
+        <activity android:name=".Activity.confirm" />
         <activity
             android:name=".Activity.SplaceScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -24,9 +25,11 @@
         <activity android:name=".Activity.update_profile" />
         <activity
             android:name=".Activity.login"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".Activity.user_home" />
-        <activity android:name=".Activity.MainActivity" />
+        <activity
+            android:name=".Activity.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

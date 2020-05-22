@@ -3,6 +3,8 @@ package com.jayneel.thebarber_user.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.AnimationUtils
+import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +21,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val uper= AnimationUtils.loadAnimation(this,R.anim.uper)
+        val start= findViewById(R.id.start) as LinearLayout
+        start.startAnimation(uper)
 
         btnsignup.setOnClickListener {
 //            val database = FirebaseDatabase.getInstance()

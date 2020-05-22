@@ -41,6 +41,8 @@ class login : AppCompatActivity() {
             startActivity(Intent(this,
                 MainActivity::class.java))
         }
+
+
         btnlogin.setOnClickListener {
             myRef.child(edtunm.text.toString()).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
