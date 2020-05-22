@@ -81,8 +81,14 @@ class shop_detail : AppCompatActivity() {
                             builder.setIcon(android.R.drawable.ic_dialog_alert)
 
                             //performing positive action
-                            builder.setPositiveButton("Yes"){dialogInterface, which ->
-                                Toast.makeText(applicationContext,"clicked yes",Toast.LENGTH_LONG).show()
+                                builder.setPositiveButton("Yes"){dialogInterface, which ->
+
+                                myRef.child(sunm).child(unm.toString()).setValue(selected).addOnCompleteListener {
+                                  //  ref.child(sunm).child("openingTime").setValue(time.conver)
+                                    Toast.makeText(applicationContext,"Appinment Booked",Toast.LENGTH_LONG).show()
+                                }
+
+
                             }
                             //performing cancel action
                             builder.setNeutralButton("Cancel"){dialogInterface , which ->

@@ -17,6 +17,7 @@ import com.jayneel.thebarber_user.R
 import com.jayneel.thebarber_user.helper.shopListAdapter
 import com.jayneel.thebarber_user.module.shopModule
 import kotlinx.android.synthetic.main.activity_user_home.*
+import kotlinx.android.synthetic.main.custom_actionbar.*
 
 class user_home : AppCompatActivity() {
 
@@ -25,6 +26,7 @@ class user_home : AppCompatActivity() {
         setContentView(R.layout.activity_user_home)
         var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
        textView.text="welcome ${sp.getString("unm","abc")}"
+        
 
 
         val database = FirebaseDatabase.getInstance()
