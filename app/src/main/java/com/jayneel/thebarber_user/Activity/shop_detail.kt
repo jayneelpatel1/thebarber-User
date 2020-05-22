@@ -1,8 +1,6 @@
 package com.jayneel.thebarber_user.Activity
 
 import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +13,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.jayneel.thebarber_user.R
 import com.jayneel.thebarber_user.helper.shopIteamAdapter
-import com.jayneel.thebarber_user.module.book
 import com.jayneel.thebarber_user.module.iteamModule
 import com.jayneel.thebarber_user.module.shopModule
 import kotlinx.android.synthetic.main.activity_shop_detail.*
@@ -49,45 +46,63 @@ class shop_detail : AppCompatActivity() {
                     }
                 }
                 selected=ad.getselectedlist()
-                rviteam.adapter=ad
+                rv_book.adapter=ad
 
-
-//                Log.d(FragmentActivity.TAG, "Value is: $value")
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                //              Log.w(FragmentActivity.TAG, "Failed to read value.", error.toException())
+                Toast.makeText(this@shop_detail,"Something wrong",Toast.LENGTH_LONG).show()
             }
         })
-//
-        fab_book.setOnClickListener {
+        rv_book.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+
+
+
+
+
+
+
+        fb_book.setOnClickListener {
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference("appinment")
             val ref=database.getReference("Shop")
             var time:String?=null
-
             ref.child(sunm).addValueEventListener(object : ValueEventListener {
-
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                  //  var ad= shopIteamAdapter(this@shop_detail,data)
-                        val value =dataSnapshot.getValue(shopModule::class.java)
-                        Log.d("key",value.toString())
+                        val value = dataSnapshot.getValue(shopModule::class.java)
+                      //  Log.d("key",value.toString())
                         if (value != null) {
                             time=value.openingTime.toString()
-                            var builder=AlertDialog.Builder(this@shop_detail)
-                            builder.setTitle("Confirm Booking")
-                            builder.setMessage("You have selected ${selected.size} and your booking appoinment on ${time.toString()}")
-                            builder.setPositiveButton("confirm",
-                                DialogInterface.OnClickListener { dialog, id ->
-                                    // FIRE ZE MISSILES!
-                                })
-                            builder.show()
+                            val builder = AlertDialog.Builder(this@shop_detail)
+                            //set title for alert dialog
+                            builder.setTitle("Cinfirm Your booking")
+                            //set message for alert dialog
+                            builder.setMessage("Hiii you Booked ${selected.size} and you will be assigne to on $time")
+                            builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+                            //performing positive action
+                            builder.setPositiveButton("Yes"){dialogInterface, which ->
+                                Toast.makeText(applicationContext,"clicked yes",Toast.LENGTH_LONG).show()
+                            }
+                            //performing cancel action
+                            builder.setNeutralButton("Cancel"){dialogInterface , which ->
+                                Toast.makeText(applicationContext,"clicked cancel\n operation cancel",Toast.LENGTH_LONG).show()
+                            }
+                            //performing negative action
+                            builder.setNegativeButton("No"){dialogInterface, which ->
+                                Toast.makeText(applicationContext,"clicked No",Toast.LENGTH_LONG).show()
+                            }
+                            // Create the AlertDialog
+                            val alertDialog: AlertDialog = builder.create()
+                            // Set other dialog properties
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
                         }
-                    }
+
+                }
+
                 override fun onCancelled(error: DatabaseError) {
-                    // Failed to read value
-                    //              Log.w(FragmentActivity.TAG, "Failed to read value.", error.toException())
+                    Toast.makeText(this@shop_detail,"Something wrong",Toast.LENGTH_LONG).show()
                 }
             })
 
@@ -95,25 +110,6 @@ class shop_detail : AppCompatActivity() {
 
 
 
-
-//            var int1=Intent(this,confirm::class.java)
-//            int1.putExtra("data",selected.toString())
-//            startActivity(int1)
-
-//            for (i in selected)
-//            {
-//
-//                var book=book(i.name.toString())
-//                myRef.child(sunm).child(unm.toString()).child(i.name.toString()).setValue(book).addOnCompleteListener{
-//                    j++
-//                    Toast.makeText(this,"$selected",Toast.LENGTH_LONG).show()
-//                }
-//            }
-
-
-
-
         }
-        rviteam.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
     }
 }

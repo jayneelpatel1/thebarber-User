@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.shop_detail" />
+        <activity android:name=".Activity.shop_detail"
+            android:theme="@style/Theme.MaterialComponents.DayNight"/>
         <activity android:name=".Activity.update_profile" />
         <activity
             android:name=".Activity.login"
