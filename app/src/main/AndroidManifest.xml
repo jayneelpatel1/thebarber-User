@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Activity.custom_actionbar"></activity>
+
         <activity android:name=".Activity.confirm" />
         <activity
             android:name=".Activity.SplaceScreen"
@@ -26,7 +26,9 @@
         <activity
             android:name=".Activity.login"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".Activity.user_home" />
+        <activity android:name=".Activity.user_home">
+        </activity>
+
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

@@ -26,8 +26,8 @@ class user_home : AppCompatActivity() {
         setContentView(R.layout.activity_user_home)
         var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
        textView.text="welcome ${sp.getString("unm","abc")}"
-        
 
+        setSupportActionBar(toolbarhome)
 
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("Shop")
