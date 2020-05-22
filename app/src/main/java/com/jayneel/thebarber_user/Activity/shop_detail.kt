@@ -70,32 +70,30 @@ class shop_detail : AppCompatActivity() {
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                   //  var ad= shopIteamAdapter(this@shop_detail,data)
-                    for(v in dataSnapshot.children) {
-                        val value = v.getValue(shopModule::class.java)
+                        val value =dataSnapshot.getValue(shopModule::class.java)
                         Log.d("key",value.toString())
                         if (value != null) {
-                            time=value.openingtime
+                            time=value.openingtime.toString()
                         }
                     }
 
 
 
 //                Log.d(FragmentActivity.TAG, "Value is: $value")
-                }
 
                 override fun onCancelled(error: DatabaseError) {
                     // Failed to read value
                     //              Log.w(FragmentActivity.TAG, "Failed to read value.", error.toException())
                 }
             })
+            var builder=AlertDialog.Builder(this)
+            builder.setTitle("Confirm Booking")
+            builder.setMessage("You have selected ${selected.size} and your booking appoinment on ${time.toString()}")
+            builder.show()
 
 
 
 
-                var builder=AlertDialog.Builder(this)
-                builder.setTitle("Confirm Booking")
-                builder.setMessage("You have selected ${selected.size} and your booking appoinment on ${time.toString()}")
-                builder.show()
 
 //            var int1=Intent(this,confirm::class.java)
 //            int1.putExtra("data",selected.toString())
