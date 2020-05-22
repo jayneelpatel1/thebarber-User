@@ -1,4 +1,3 @@
 package com.jayneel.thebarber_user.module
 
-class book {
-}
+data class book(var catid:String="")

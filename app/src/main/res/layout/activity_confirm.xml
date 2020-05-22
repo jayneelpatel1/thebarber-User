@@ -6,4 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".Activity.confirm">
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="101dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="409dp"
+        android:layout_height="609dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="121dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

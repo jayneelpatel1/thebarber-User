@@ -1,10 +1,12 @@
 package com.jayneel.thebarber_user.Activity
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -12,7 +14,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.jayneel.thebarber_user.R
 import com.jayneel.thebarber_user.helper.shopIteamAdapter
+import com.jayneel.thebarber_user.module.book
 import com.jayneel.thebarber_user.module.iteamModule
+import com.jayneel.thebarber_user.module.shopModule
 import kotlinx.android.synthetic.main.activity_shop_detail.*
 
 class shop_detail : AppCompatActivity() {
@@ -57,9 +61,51 @@ class shop_detail : AppCompatActivity() {
         })
 //
         fab_book.setOnClickListener {
-            Toast.makeText(this,"$selected",Toast.LENGTH_LONG).show()
+            val database = FirebaseDatabase.getInstance()
+            val myRef = database.getReference("appinment")
+            val ref=database.getReference("shop")
+            var time:String?=null
+            ref.child(sunm).addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    for(v in p0.children){
+                        var value=v.getValue(shopModule::class.java)
+                        if (value != null) {
+                            time=value.oprningtime.toString()
+                        }
+                    }
+                }
+
+            })
+
+
+
+                var builder=AlertDialog.Builder(this)
+                builder.setTitle("Confirm Booking")
+                builder.setMessage("You have selected ${selected.size} and your booking appoinment on $time")
+                builder.show()
+
+//            var int1=Intent(this,confirm::class.java)
+//            int1.putExtra("data",selected.toString())
+//            startActivity(int1)
+
+//            for (i in selected)
+//            {
+//
+//                var book=book(i.name.toString())
+//                myRef.child(sunm).child(unm.toString()).child(i.name.toString()).setValue(book).addOnCompleteListener{
+//                    j++
+//                    Toast.makeText(this,"$selected",Toast.LENGTH_LONG).show()
+//                }
+//            }
+
+
+
+
         }
         rviteam.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-
     }
 }
