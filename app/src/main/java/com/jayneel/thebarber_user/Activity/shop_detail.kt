@@ -71,14 +71,13 @@ class shop_detail : AppCompatActivity() {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                   //  var ad= shopIteamAdapter(this@shop_detail,data)
                     for(v in dataSnapshot.children) {
-                        val value = v.getValue(iteamModule::class.java)
+                        val value = v.getValue(shopModule::class.java)
                         Log.d("key",value.toString())
                         if (value != null) {
-                            data.add(value)
+                            time=value.openingtime
                         }
                     }
-                    selected=ad.getselectedlist()
-                    rviteam.adapter=ad
+
 
 
 //                Log.d(FragmentActivity.TAG, "Value is: $value")
