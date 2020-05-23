@@ -20,6 +20,7 @@ class shopIteamAdapter(var ctx:Activity,var arlist:ArrayList<iteamModule>):Recyc
         var price=v.lblprice
         var chk=v.chkbook
         var container=v.container
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewholder {
