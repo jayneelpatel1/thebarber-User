@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
@@ -27,6 +29,7 @@ class user_home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_home)
+
         var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
      //  textView.text="welcome ${sp.getString("unm","abc")}"
         setSupportActionBar(toolbarhome)

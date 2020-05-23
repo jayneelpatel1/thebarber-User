@@ -13,9 +13,11 @@ class SplaceScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splace_screen)
+
         val zoom_in= AnimationUtils.loadAnimation(this,R.anim.zoom_in)
         val imageView= findViewById(R.id.imageView) as ImageView
         imageView.startAnimation(zoom_in)
+
         val zoom_logo= AnimationUtils.loadAnimation(this,R.anim.zoom_logo)
         val imagelogo= findViewById(R.id.imagelogo) as ImageView
         imagelogo.startAnimation(zoom_logo)
