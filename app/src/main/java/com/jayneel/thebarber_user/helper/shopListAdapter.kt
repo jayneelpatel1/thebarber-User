@@ -33,8 +33,8 @@ class shopListAdapter(var ctx:Activity,var arlist:ArrayList<shopModule>):Recycle
     }
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
-        holder.list_constrain.startAnimation(AnimationUtils.loadAnimation(ctx,R.anim.rv))
-        holder.imageback.startAnimation(AnimationUtils.loadAnimation(ctx,R.anim.rvdata))
+        holder.list_constrain.startAnimation(AnimationUtils.loadAnimation(ctx,R.anim.rvdata))
+        holder.imageView.startAnimation(AnimationUtils.loadAnimation(ctx,R.anim.rv))
 
         holder.shopname.text=arlist[position].shopName.toString()
         holder.itemView.setOnClickListener {

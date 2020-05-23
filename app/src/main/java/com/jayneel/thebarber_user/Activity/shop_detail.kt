@@ -31,8 +31,6 @@ class shop_detail : AppCompatActivity() {
         var sunm=intent.getStringExtra("shopunm")
         Log.d("key",sunm.toString())
 
-
-
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("Category")
 
@@ -58,12 +56,19 @@ class shop_detail : AppCompatActivity() {
                 Toast.makeText(this@shop_detail,"Something wrong",Toast.LENGTH_LONG).show()
             }
         })
+
         rv_book.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
 
+
         fb_book.setOnClickListener {
+
+
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference("appinment")
             val ref=database.getReference("Shop")
+
+
+
             var time:String?=null
             ref.child(sunm).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -71,6 +76,10 @@ class shop_detail : AppCompatActivity() {
                       //  Log.d("key",value.toString())
                         if (value != null) {
                             time=value.openingTime.toString()
+                            if(value.status.equals("Close"))
+                            {
+
+                            }
                             val builder = AlertDialog.Builder(this@shop_detail)
                             //set title for alert dialog
                             builder.setTitle("Cinfirm Your booking")
@@ -80,7 +89,6 @@ class shop_detail : AppCompatActivity() {
 
                             //performing positive action
                                 builder.setPositiveButton("Yes"){dialogInterface, which ->
-
                                 myRef.child(sunm).child(unm.toString()).setValue(selected).addOnCompleteListener {
                                   //  ref.child(sunm).child("openingTime").setValue(time.conver)
                                     val current = time
@@ -89,7 +97,6 @@ class shop_detail : AppCompatActivity() {
                                     {
                                         add=i.minute!!+add
                                     }
-
                                     val formatter = DateTimeFormatter.ofPattern("HH:mm")
                                     val formatted = current!!.format(formatter)
                                     val df = SimpleDateFormat("HH:mm")
@@ -98,6 +105,7 @@ class shop_detail : AppCompatActivity() {
                                     cal.time = d
                                     cal.add(Calendar.MINUTE, add)
                                     val newTime: String = df.format(cal.time)
+
                                     ref.child(sunm).child("openingTime").setValue(newTime)
                                     myRef.child(sunm).child(unm.toString()).child("time").setValue(time)
                                     Toast.makeText(applicationContext,"Appinment Booked",Toast.LENGTH_LONG).show()
