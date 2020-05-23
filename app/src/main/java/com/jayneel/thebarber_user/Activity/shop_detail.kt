@@ -60,12 +60,6 @@ class shop_detail : AppCompatActivity() {
         })
         rv_book.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
 
-
-
-
-
-
-
         fb_book.setOnClickListener {
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference("appinment")
