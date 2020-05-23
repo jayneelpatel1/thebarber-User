@@ -18,6 +18,7 @@ class shopListAdapter(var ctx:Activity,var arlist:ArrayList<shopModule>):Recycle
     inner class viewholder(v:View):RecyclerView.ViewHolder(v){
         var shopname=v.lblshopnm
         var imageView=v.item_image
+        var imageback=v.imageView4
 
     }
 
@@ -32,6 +33,7 @@ class shopListAdapter(var ctx:Activity,var arlist:ArrayList<shopModule>):Recycle
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
         holder.imageView.startAnimation(AnimationUtils.loadAnimation(ctx,R.anim.fade_recycler))
+        holder.imageback.startAnimation(AnimationUtils.loadAnimation(ctx,R.anim.rvdata))
 
         holder.shopname.text=arlist[position].shopName.toString()
         holder.itemView.setOnClickListener {
