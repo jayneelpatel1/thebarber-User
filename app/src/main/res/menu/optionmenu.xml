@@ -7,7 +7,7 @@
         android:title="Search"
         android:icon="@drawable/ic_search_black_24dp"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always|collapseActionView"/>
     <item
         android:id="@+id/action_logout"
         android:title="Logout">
