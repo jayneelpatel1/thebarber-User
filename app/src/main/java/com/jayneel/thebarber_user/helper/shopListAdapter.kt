@@ -19,6 +19,7 @@ class shopListAdapter(var ctx:Activity,var arlist:ArrayList<shopModule>):Recycle
         var shopname=v.lblshopnm
         var imageView=v.item_image
         var imageback=v.imageView4
+        var list_constrain=v.list_constrain
 
     }
 
@@ -32,7 +33,7 @@ class shopListAdapter(var ctx:Activity,var arlist:ArrayList<shopModule>):Recycle
     }
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
-        holder.imageView.startAnimation(AnimationUtils.loadAnimation(ctx,R.anim.fade_recycler))
+        holder.list_constrain.startAnimation(AnimationUtils.loadAnimation(ctx,R.anim.rv))
         holder.imageback.startAnimation(AnimationUtils.loadAnimation(ctx,R.anim.rvdata))
 
         holder.shopname.text=arlist[position].shopName.toString()
