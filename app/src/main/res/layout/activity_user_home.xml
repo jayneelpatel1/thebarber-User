@@ -40,19 +40,6 @@
 
 
         </androidx.recyclerview.widget.RecyclerView>
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
-            android:textSize="24sp"/>
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            app:srcCompat="@drawable/ic_account_circle_black_24dp" />
 
         <ProgressBar
             android:id="@+id/pbhome"

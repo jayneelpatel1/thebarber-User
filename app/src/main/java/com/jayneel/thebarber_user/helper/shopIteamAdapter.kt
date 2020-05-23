@@ -3,6 +3,7 @@ package com.jayneel.thebarber_user.helper
 import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.jayneel.thebarber_user.R
 import com.jayneel.thebarber_user.module.iteamModule
@@ -18,6 +19,7 @@ class shopIteamAdapter(var ctx:Activity,var arlist:ArrayList<iteamModule>):Recyc
         var name=v.lbliteamnm
         var price=v.lblprice
         var chk=v.chkbook
+        var container=v.container
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewholder {
@@ -34,6 +36,10 @@ class shopIteamAdapter(var ctx:Activity,var arlist:ArrayList<iteamModule>):Recyc
     }
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
+
+        var anim=AnimationUtils.loadAnimation(ctx,R.anim.rv)
+        holder.name.startAnimation(anim)
+        holder.container.startAnimation(AnimationUtils.loadAnimation(ctx,R.anim.rvdata))
         holder.name.text= arlist[position].name
         holder.price.text= arlist[position].price+" ₹"
 
