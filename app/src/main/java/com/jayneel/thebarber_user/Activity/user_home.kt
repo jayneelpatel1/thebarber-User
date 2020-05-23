@@ -38,7 +38,7 @@ class user_home : AppCompatActivity() {
         val myRef = database.getReference("Shop")
         // var ad=shopListAdapter(this,data)
 
-        myRef.addValueEventListener(object : ValueEventListener {
+        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 data.clear()
                 pbhome.visibility=View.VISIBLE
