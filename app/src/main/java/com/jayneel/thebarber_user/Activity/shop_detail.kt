@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.chip.Chip
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -14,14 +14,20 @@ import com.google.firebase.database.ValueEventListener
 import com.jayneel.thebarber_user.R
 import com.jayneel.thebarber_user.helper.shopIteamAdapter
 import com.jayneel.thebarber_user.module.iteamModule
-import com.jayneel.thebarber_user.module.shopModule
 import kotlinx.android.synthetic.main.activity_shop_detail.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
 
 class shop_detail : AppCompatActivity() {
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("demo","on start call")
+    }
+    val database = FirebaseDatabase.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,14 +35,26 @@ class shop_detail : AppCompatActivity() {
         var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
         var unm=sp.getString("unm","abc")
         var sunm=intent.getStringExtra("shopunm")
-        Log.d("key",sunm.toString())
+        Log.i("demo","on create call")
+        // geting value for chips current date and next date
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val formatted = current.format(formatter)
+        chip3.text=formatted
+        val df = SimpleDateFormat("dd-MM-yyyy")
+        val d: Date = df.parse(formatted.toString())
+        val cal = Calendar.getInstance()
+        cal.time = d
+        cal.add(Calendar.DATE, 1)
+        val newTime: String = df.format(cal.time)
+        chip4.text=newTime
 
-        val database = FirebaseDatabase.getInstance()
+
+
         val myRef = database.getReference("Category")
-
         var data= arrayListOf<iteamModule>()
         var selected= arrayListOf<iteamModule>()
-        myRef.child(sunm).addValueEventListener(object : ValueEventListener {
+        myRef.child(sunm).addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var ad= shopIteamAdapter(this@shop_detail,data)
@@ -56,89 +74,84 @@ class shop_detail : AppCompatActivity() {
                 Toast.makeText(this@shop_detail,"Something wrong",Toast.LENGTH_LONG).show()
             }
         })
-
         rv_book.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+
+
+
+
+        chipGroup.check(R.id.chip3)
+        var chiptext=getchiptext()
+        var st:String?= "null"
+
 
 
         fb_book.setOnClickListener {
 
-
-            val database = FirebaseDatabase.getInstance()
-            val myRef = database.getReference("appinment")
-            val ref=database.getReference("Shop")
-
-
-
-            var time:String?=null
-            ref.child(sunm).addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        val value = dataSnapshot.getValue(shopModule::class.java)
-                      //  Log.d("key",value.toString())
-                        if (value != null) {
-                            time=value.openingTime.toString()
-                            if(value.status.equals("Close"))
-                            {
-
-                            }
-                            val builder = AlertDialog.Builder(this@shop_detail)
-                            //set title for alert dialog
-                            builder.setTitle("Cinfirm Your booking")
-                            //set message for alert dialog
-                            builder.setMessage("Hiii you Booked ${selected.size} and you will be assigne to on $time")
-                            builder.setIcon(android.R.drawable.ic_dialog_alert)
-
-                            //performing positive action
-                                builder.setPositiveButton("Yes"){dialogInterface, which ->
-                                myRef.child(sunm).child(unm.toString()).setValue(selected).addOnCompleteListener {
-                                  //  ref.child(sunm).child("openingTime").setValue(time.conver)
-                                    val current = time
-                                    var add:Int=0
-                                    for(i in selected)
-                                    {
-                                        add=i.minute!!+add
-                                    }
-                                    val formatter = DateTimeFormatter.ofPattern("HH:mm")
-                                    val formatted = current!!.format(formatter)
-                                    val df = SimpleDateFormat("HH:mm")
-                                    val d: Date = df.parse(formatted.toString())
-                                    val cal = Calendar.getInstance()
-                                    cal.time = d
-                                    cal.add(Calendar.MINUTE, add)
-                                    val newTime: String = df.format(cal.time)
-
-                                    ref.child(sunm).child("openingTime").setValue(newTime)
-                                    myRef.child(sunm).child(unm.toString()).child("time").setValue(time)
-                                    Toast.makeText(applicationContext,"Appinment Booked",Toast.LENGTH_LONG).show()
-                                }
-
-
-                            }
-                            //performing cancel action
-                            builder.setNeutralButton("Cancel"){dialogInterface , which ->
-                                Toast.makeText(applicationContext,"clicked cancel\n operation cancel",Toast.LENGTH_LONG).show()
-                            }
-                            //performing negative action
-                            builder.setNegativeButton("No"){dialogInterface, which ->
-                                Toast.makeText(applicationContext,"clicked No",Toast.LENGTH_LONG).show()
-                            }
-                            // Create the AlertDialog
-                            val alertDialog: AlertDialog = builder.create()
-                            // Set other dialog properties
-                            alertDialog.setCancelable(false)
-                            alertDialog.show()
-                        }
-
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(this@shop_detail,"Something wrong",Toast.LENGTH_LONG).show()
-                }
-            })
-
-
-
-
+            var time=findViewById<Chip>(chipGroupSlot.checkedChipId).text
+            var chiptext=getchiptext()
+            bookappiment(sunm,chiptext,time.toString(),selected,unm.toString())
 
         }
+
+           }
+
+    private fun bookappiment(
+        sunm: String?,
+        date: String,
+        time: String,
+        selected: ArrayList<iteamModule>,
+        unm: String?
+    ) {
+        val myRef = database.getReference("appinment")
+        myRef.child(sunm.toString()).child(date).child(time).child(unm.toString()).setValue(selected)
+    }
+
+    private fun isappinment(
+        chiptext: String,
+        sunm: String?,
+        selected: ArrayList<iteamModule>,
+        unm: String?
+    ){
+        val myRef = database.getReference("appinment")
+        var ans= arrayListOf<iteamModule>()
+        var k=""
+        var tt:String=""
+        if (sunm != null) {
+            myRef.child(sunm).child(chiptext).addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+                    Toast.makeText(this@shop_detail,"Somerthing Wrog Try ofter sometime",Toast.LENGTH_LONG).show()
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+
+                    for(v in p0.children)
+                    {
+                        k=v.key.toString()
+                    }
+                    for(v in p0.children){}
+
+                    var sum:Int=0
+                    for(t in ans)
+                    {
+                        sum=sum+t.minute.toString().toInt()
+                    }
+
+                    val formatter = DateTimeFormatter.ofPattern("HH:mm")
+                    val formatted = k.format(formatter)
+
+                        val df = SimpleDateFormat("HH:mm")
+                        val d: Date = df.parse(formatted.toString())
+                        val cal = Calendar.getInstance()
+                        cal.time = d
+                        cal.add(Calendar.MINUTE, sum)
+                        val newTime: String = df.format(cal.time)
+                    bookappiment(sunm,chiptext,newTime.toString(),selected,unm)
+                }
+            })
+        }
+
+    }
+    private fun getchiptext():String {
+        return findViewById<Chip>(chipGroup.checkedChipId).text.toString()
     }
 }
