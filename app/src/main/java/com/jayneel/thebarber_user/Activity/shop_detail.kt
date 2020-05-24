@@ -108,42 +108,8 @@ class shop_detail : AppCompatActivity() {
 
                 for (i in arlist)
                 {
-                    if(chip21.text.equals(i))
-                        chip21.visibility=View.GONE
-                    if(chip20.text.equals(i))
-                        chip20.visibility=View.GONE
-                    if(chip2.text.equals(i))
-                        chip2.visibility=View.GONE
-                    if(chip5.text.equals(i))
-                        chip5.visibility=View.GONE
-                    if(chip6.text.equals(i))
-                        chip6.visibility=View.GONE
-                    if(chip7.text.equals(i))
-                        chip7.visibility=View.GONE
-                    if(chip8.text.equals(i))
-                        chip8.visibility=View.GONE
-                    if(chip9.text.equals(i))
-                        chip9.visibility=View.GONE
-                    if(chip10.text.equals(i))
-                        chip10.visibility=View.GONE
-                    if(chip11.text.equals(i))
-                        chip11.visibility=View.GONE
-                    if(chip12.text.equals(i))
-                        chip12.visibility=View.GONE
-                    if(chip13.text.equals(i))
-                        chip13.visibility=View.GONE
-                    if(chip14.text.equals(i))
-                        chip14.visibility=View.GONE
-                    if(chip15.text.equals(i))
-                        chip15.visibility=View.GONE
-                    if(chip16.text.equals(i))
-                        chip16.visibility=View.GONE
-                    if(chip17.text.equals(i))
-                        chip17.visibility=View.GONE
-                    if(chip18.text.equals(i))
-                        chip18.visibility=View.GONE
-                    if(chip19.text.equals(i))
-                        chip19.visibility=View.GONE
+                    chipdisable(i)
+
                 }
                 arlist.clear()
               //  Toast.makeText(this@shop_detail,arlist.toString(),Toast.LENGTH_LONG).show()
@@ -170,42 +136,8 @@ class shop_detail : AppCompatActivity() {
                     visibalchip()
                     for (i in arlist)
                     {
-                        if(chip21.text.equals(i))
-                            chip21.visibility=View.GONE
-                        if(chip20.text.equals(i))
-                            chip20.visibility=View.GONE
-                        if(chip2.text.equals(i))
-                            chip2.visibility=View.GONE
-                        if(chip5.text.equals(i))
-                            chip5.visibility=View.GONE
-                        if(chip6.text.equals(i))
-                            chip6.visibility=View.GONE
-                        if(chip7.text.equals(i))
-                            chip7.visibility=View.GONE
-                        if(chip8.text.equals(i))
-                            chip8.visibility=View.GONE
-                        if(chip9.text.equals(i))
-                            chip9.visibility=View.GONE
-                        if(chip10.text.equals(i))
-                            chip10.visibility=View.GONE
-                        if(chip11.text.equals(i))
-                            chip11.visibility=View.GONE
-                        if(chip12.text.equals(i))
-                            chip12.visibility=View.GONE
-                        if(chip13.text.equals(i))
-                            chip13.visibility=View.GONE
-                        if(chip14.text.equals(i))
-                            chip14.visibility=View.GONE
-                        if(chip15.text.equals(i))
-                            chip15.visibility=View.GONE
-                        if(chip16.text.equals(i))
-                            chip16.visibility=View.GONE
-                        if(chip17.text.equals(i))
-                            chip17.visibility=View.GONE
-                        if(chip18.text.equals(i))
-                            chip18.visibility=View.GONE
-                        if(chip19.text.equals(i))
-                            chip19.visibility=View.GONE
+                        chipdisable(i)
+
                     }
                     arlist.clear()
                     //  Toast.makeText(this@shop_detail,arlist.toString(),Toast.LENGTH_LONG).show()
@@ -233,42 +165,8 @@ class shop_detail : AppCompatActivity() {
 
                     for (i in sr)
                     {
-                        if(chip21.text.equals(i))
-                            chip21.visibility=View.GONE
-                        if(chip20.text.equals(i))
-                            chip20.visibility=View.GONE
-                        if(chip2.text.equals(i))
-                            chip2.visibility=View.GONE
-                        if(chip5.text.equals(i))
-                            chip5.visibility=View.GONE
-                        if(chip6.text.equals(i))
-                            chip6.visibility=View.GONE
-                        if(chip7.text.equals(i))
-                            chip7.visibility=View.GONE
-                        if(chip8.text.equals(i))
-                            chip8.visibility=View.GONE
-                        if(chip9.text.equals(i))
-                            chip9.visibility=View.GONE
-                        if(chip10.text.equals(i))
-                            chip10.visibility=View.GONE
-                        if(chip11.text.equals(i))
-                            chip11.visibility=View.GONE
-                        if(chip12.text.equals(i))
-                            chip12.visibility=View.GONE
-                        if(chip13.text.equals(i))
-                            chip13.visibility=View.GONE
-                        if(chip14.text.equals(i))
-                            chip14.visibility=View.GONE
-                        if(chip15.text.equals(i))
-                            chip15.visibility=View.GONE
-                        if(chip16.text.equals(i))
-                            chip16.visibility=View.GONE
-                        if(chip17.text.equals(i))
-                            chip17.visibility=View.GONE
-                        if(chip18.text.equals(i))
-                            chip18.visibility=View.GONE
-                        if(chip19.text.equals(i))
-                            chip19.visibility=View.GONE
+                        chipdisable(i)
+
                     }
                     sr.clear()
                     //  Toast.makeText(this@shop_detail,arlist.toString(),Toast.LENGTH_LONG).show()
@@ -303,6 +201,46 @@ class shop_detail : AppCompatActivity() {
         }
 
            }
+
+    private fun chipdisable(i: String) {
+        if(chip21.text.equals(i))
+            chip21.visibility=View.GONE
+        if(chip20.text.equals(i))
+            chip20.visibility=View.GONE
+        if(chip2.text.equals(i))
+            chip2.visibility=View.GONE
+        if(chip5.text.equals(i))
+            chip5.visibility=View.GONE
+        if(chip6.text.equals(i))
+            chip6.visibility=View.GONE
+        if(chip7.text.equals(i))
+            chip7.visibility=View.GONE
+        if(chip8.text.equals(i))
+            chip8.visibility=View.GONE
+        if(chip9.text.equals(i))
+            chip9.visibility=View.GONE
+        if(chip10.text.equals(i))
+            chip10.visibility=View.GONE
+        if(chip11.text.equals(i))
+            chip11.visibility=View.GONE
+        if(chip12.text.equals(i))
+            chip12.visibility=View.GONE
+        if(chip13.text.equals(i))
+            chip13.visibility=View.GONE
+        if(chip14.text.equals(i))
+            chip14.visibility=View.GONE
+        if(chip15.text.equals(i))
+            chip15.visibility=View.GONE
+        if(chip16.text.equals(i))
+            chip16.visibility=View.GONE
+        if(chip17.text.equals(i))
+            chip17.visibility=View.GONE
+        if(chip18.text.equals(i))
+            chip18.visibility=View.GONE
+        if(chip19.text.equals(i))
+            chip19.visibility=View.GONE
+
+    }
 
     private fun visibalchip() {
             chip21.visibility=View.VISIBLE
