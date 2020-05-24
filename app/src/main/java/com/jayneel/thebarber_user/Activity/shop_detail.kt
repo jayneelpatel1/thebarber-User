@@ -104,6 +104,8 @@ class shop_detail : AppCompatActivity() {
                         var value=v.getValue(String::class.java)
                         arlist.add(value.toString())
                     }
+                visibalchip()
+
                 for (i in arlist)
                 {
                     if(chip21.text.equals(i))
@@ -147,12 +149,14 @@ class shop_detail : AppCompatActivity() {
               //  Toast.makeText(this@shop_detail,arlist.toString(),Toast.LENGTH_LONG).show()
             }
         })
+        arlist.clear()
 
 
         chip3.setOnClickListener {
+            visibalchip()
             val ref= database.getReference("appinment")
             var arlist=ArrayList<String>()
-            ref.child(sunm.toString()).child(chiptext).child("time").addValueEventListener(object :ValueEventListener{
+            ref.child(sunm.toString()).child(chip3.text.toString()).child("time").addValueEventListener(object :ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {
                     TODO("Not yet implemented")
                 }
@@ -163,6 +167,7 @@ class shop_detail : AppCompatActivity() {
                         var value=v.getValue(String::class.java)
                         arlist.add(value.toString())
                     }
+                    visibalchip()
                     for (i in arlist)
                     {
                         if(chip21.text.equals(i))
@@ -206,12 +211,14 @@ class shop_detail : AppCompatActivity() {
                     //  Toast.makeText(this@shop_detail,arlist.toString(),Toast.LENGTH_LONG).show()
                 }
             })
+            arlist.clear()
         }
 
         chip4.setOnClickListener {
+            visibalchip()
             val ref= database.getReference("appinment")
             var sr=ArrayList<String>()
-            ref.child(sunm.toString()).child(chiptext).child("time").addValueEventListener(object :ValueEventListener{
+            ref.child(sunm.toString()).child(chip4.text.toString()).child("time").addValueEventListener(object :ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {
                     TODO("Not yet implemented")
                 }
@@ -222,6 +229,8 @@ class shop_detail : AppCompatActivity() {
                         var value=v.getValue(String::class.java)
                         sr.add(value.toString())
                     }
+                    visibalchip()
+
                     for (i in sr)
                     {
                         if(chip21.text.equals(i))
@@ -265,6 +274,7 @@ class shop_detail : AppCompatActivity() {
                     //  Toast.makeText(this@shop_detail,arlist.toString(),Toast.LENGTH_LONG).show()
                 }
             })
+            sr.clear()
         }
 
 
@@ -293,6 +303,27 @@ class shop_detail : AppCompatActivity() {
         }
 
            }
+
+    private fun visibalchip() {
+            chip21.visibility=View.VISIBLE
+            chip20.visibility=View.VISIBLE
+            chip2.visibility=View.VISIBLE
+            chip5.visibility=View.VISIBLE
+            chip6.visibility=View.VISIBLE
+            chip7.visibility=View.VISIBLE
+            chip8.visibility=View.VISIBLE
+            chip9.visibility=View.VISIBLE
+            chip10.visibility=View.VISIBLE
+            chip11.visibility=View.VISIBLE
+            chip12.visibility=View.VISIBLE
+            chip13.visibility=View.VISIBLE
+            chip14.visibility=View.VISIBLE
+            chip15.visibility=View.VISIBLE
+            chip16.visibility=View.VISIBLE
+            chip17.visibility=View.VISIBLE
+            chip18.visibility=View.VISIBLE
+            chip19.visibility=View.VISIBLE
+    }
 
     private fun bookappiment(
         sunm: String?,
