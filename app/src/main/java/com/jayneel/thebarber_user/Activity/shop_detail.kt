@@ -87,9 +87,17 @@ class shop_detail : AppCompatActivity() {
 
         fb_book.setOnClickListener {
 
-            var time=findViewById<Chip>(chipGroupSlot.checkedChipId).text
-            var chiptext=getchiptext()
-            bookappiment(sunm,chiptext,time.toString(),selected,unm.toString())
+            if(chipGroupSlot.isSelected && !selected.equals(null))
+            {
+                var time=findViewById<Chip>(chipGroupSlot.checkedChipId).text
+                var chiptext=getchiptext()
+                bookappiment(sunm,chiptext,time.toString(),selected,unm.toString())
+                Toast.makeText(this,"Appinment Booked",Toast.LENGTH_LONG).show()
+            }
+            else
+                Toast.makeText(this,"Select time first and category",Toast.LENGTH_LONG).show()
+
+
 
         }
 
