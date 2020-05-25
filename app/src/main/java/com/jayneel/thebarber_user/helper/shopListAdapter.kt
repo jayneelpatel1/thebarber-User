@@ -9,6 +9,8 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
 import com.jayneel.thebarber_user.Activity.shop_detail
 import com.jayneel.thebarber_user.R
 import com.jayneel.thebarber_user.module.shopModule
@@ -34,6 +36,16 @@ class shopListAdapter(var ctx:Activity,var arlist:ArrayList<shopModule>):Recycle
     }
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
+
+        if(arlist[position].imgurl.toString()!="") {
+            val storage = FirebaseStorage.getInstance()
+            val storageReference = storage.getReferenceFromUrl(arlist[position].imgurl.toString())
+
+            storageReference.downloadUrl.addOnSuccessListener {
+                val imgurl = it.toString()
+                Glide.with(ctx).load(imgurl).into(holder.imageView).view
+            }
+        }
         holder.list_constrain.startAnimation(AnimationUtils.loadAnimation(ctx,R.anim.rvdata))
         holder.imageView.startAnimation(AnimationUtils.loadAnimation(ctx,R.anim.rv))
 
