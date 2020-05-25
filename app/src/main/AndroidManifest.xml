@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.shop_detail"
-            android:theme="@style/Theme.MaterialComponents.DayNight"/>
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"/>
         <activity android:name=".Activity.update_profile" />
         <activity
             android:name=".Activity.login"

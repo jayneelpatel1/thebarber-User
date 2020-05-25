@@ -6,31 +6,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.shop_detail"
+    android:background="#343746"
     style="@style/ThemeOverlay.MaterialComponents">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Select Your Date and Time Slot"
+        android:textColor="#ad904e"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/chipGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="331dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip3"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Today" />
+            android:text="Today"
+            android:textColor="#ad904e" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip4"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tommorow" />
+            android:text="Tommorow"
+            android:textColor="#ad904e" />
 
     </com.google.android.material.chip.ChipGroup>
 
@@ -39,142 +57,164 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        app:singleSelection="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroup">
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+        app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip2"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#ad904e"
             android:text="10:00" />
 
         <com.google.android.material.chip.Chip
-            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:id="@+id/chip5"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10:30"/>
+            android:textColor="#ad904e"
+            android:text="10:30" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip6"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="11:00"/>
+            android:textColor="#ad904e"
+            android:text="11:00" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip7"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="11:30"/>
+            android:textColor="#ad904e"
+            android:text="11:30" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip8"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12:00"/>
+            android:textColor="#ad904e"
+            android:text="12:00" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip9"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12:30"/>
+            android:textColor="#ad904e"
+            android:text="12:30" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip10"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="01:00"/>
+            android:textColor="#ad904e"
+            android:text="01:00" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip11"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="01:30"/>
+            android:textColor="#ad904e"
+            android:text="01:30" />
+
         <com.google.android.material.chip.Chip
             android:id="@+id/chip12"
-            android:layout_width="wrap_content"
             style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="02:00"/>
+            android:textColor="#ad904e"
+            android:text="02:00" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip13"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="02:30"/>
+            android:textColor="#ad904e"
+            android:text="02:30" />
+
         <com.google.android.material.chip.Chip
             android:id="@+id/chip14"
-            android:layout_width="wrap_content"
             style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="03:00"/>
+            android:textColor="#ad904e"
+            android:text="03:00" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip15"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="03:30"/>
+            android:textColor="#ad904e"
+            android:text="03:30" />
+
         <com.google.android.material.chip.Chip
             android:id="@+id/chip16"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="04:00"/>
+            android:textColor="#ad904e"
+            android:text="04:00" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip17"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="04:30"/>
+            android:textColor="#ad904e"
+            android:text="04:30" />
+
         <com.google.android.material.chip.Chip
             android:id="@+id/chip18"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="05:00"/>
+            android:textColor="#ad904e"
+            android:text="05:00" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip19"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="05:30"/>
+            android:textColor="#ad904e"
+            android:text="05:30" />
+
         <com.google.android.material.chip.Chip
             android:id="@+id/chip20"
-            android:layout_width="wrap_content"
             style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="06:00"/>
+            android:textColor="#ad904e"
+            android:text="06:00" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip21"
-            android:layout_width="wrap_content"
             style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="06:30"/>
+            android:textColor="#ad904e"
+            android:text="06:30" />
     </com.google.android.material.chip.ChipGroup>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_book"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="1dp"
+        android:layout_width="408dp"
+        android:layout_height="421dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -182,11 +222,13 @@
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fb_book"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_width="509dp"
+        android:layout_height="80dp"
+        android:backgroundTint="@color/colorPrimary"
         android:clickable="true"
-        android:text="Confirm"
+        android:gravity="center"
+        android:text="Confirm Your Booking"
+        android:textColor="#f3f3f3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

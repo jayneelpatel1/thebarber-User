@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/btnreg"
-    android:background="#FE7240"
+    android:background="#343746"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -27,10 +27,10 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="431dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="494dp"
+                    android:layout_height="202dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/l2" />
+                    app:srcCompat="@drawable/logos" />
             </LinearLayout>
         </FrameLayout>
 
@@ -52,7 +52,7 @@
             android:layout_marginTop="35dp"
 
             android:text="         Login in to Your Account."
-            android:textColor="#3a3a3a"
+            android:textColor="#ad904e"
             android:textSize="25dp"
             android:textStyle="normal" />
 

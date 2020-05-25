@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#FE7240"
+    android:background="#343746"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activity.MainActivity">
@@ -25,10 +25,10 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="431dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="467dp"
+                    android:layout_height="210dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/l2" />
+                    app:srcCompat="@drawable/logos" />
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>
@@ -45,7 +45,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
             android:text="         Register in to Your Account."
-            android:textColor="#3a3a3a"
+            android:textColor="#ad904e"
             android:textSize="25dp"
             android:textStyle="normal" />
 

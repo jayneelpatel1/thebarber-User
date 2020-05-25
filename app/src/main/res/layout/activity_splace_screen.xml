@@ -9,22 +9,23 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="166dp"
-        android:layout_height="165dp"
+        android:layout_width="153dp"
+        android:layout_height="148dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/orange" />
+        app:srcCompat="@drawable/blue" />
 
     <ImageView
         android:id="@+id/imagelogo"
-        android:layout_width="101dp"
-        android:layout_height="46dp"
+        android:layout_width="124dp"
+        android:layout_height="127dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/l2" />
+        app:srcCompat="@drawable/logos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
