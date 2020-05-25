@@ -2,6 +2,8 @@ package com.jayneel.thebarber_user.Activity
 
 import android.content.Context
 import android.os.Bundle
+import android.view.animation.AnimationUtils
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
@@ -21,6 +23,11 @@ class update_profile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_profile)
+
+        val uper= AnimationUtils.loadAnimation(this,R.anim.uper)
+        val start= findViewById(R.id.start) as LinearLayout
+        start.startAnimation(uper)
+
         var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
         var unm=sp.getString("unm","abc")
 
