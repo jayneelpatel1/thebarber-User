@@ -53,8 +53,6 @@ class shop_detail : AppCompatActivity() {
         val newTime: String = df.format(cal.time)
         chip4.text=newTime
 
-
-
         val myRef = database.getReference("Category")
         var data= arrayListOf<iteamModule>()
         var selected= arrayListOf<iteamModule>()
@@ -79,11 +77,6 @@ class shop_detail : AppCompatActivity() {
             }
         })
         rv_book.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-
-
-
-
-
         chipGroup.check(R.id.chip3)
         var chiptext=getchiptext()
         var st:String?= "null"
