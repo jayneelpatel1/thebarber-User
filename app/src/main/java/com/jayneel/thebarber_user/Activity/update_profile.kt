@@ -2,8 +2,6 @@ package com.jayneel.thebarber_user.Activity
 
 import android.content.Context
 import android.os.Bundle
-import android.view.animation.AnimationUtils
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
@@ -23,26 +21,24 @@ class update_profile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_profile)
-
-        val uper= AnimationUtils.loadAnimation(this,R.anim.uper)
-        val start= findViewById(R.id.start) as LinearLayout
-        start.startAnimation(uper)
-
-        var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
-        var unm=sp.getString("unm","abc")
+        var sp = getSharedPreferences("Login", Context.MODE_PRIVATE)
+        var unm = sp.getString("unm", "abc")
 
         // Read from the database
-        var us= arrayListOf<userData>()
+        var gender: String = ""
+        var pass: String = ""
         // Read from the database
         myRef.child(unm!!).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val value =dataSnapshot.getValue(userData::class.java)
-                    if (value != null) {
-                        textView2.text=value.nm
-                        edtuphone.setText(value.ph)
-                        eduemail.setText(value.email)
+                val value = dataSnapshot.getValue(userData::class.java)
+                if (value != null) {
+                    textView2.text = value.nm
+                    edtuphone.setText(value.ph)
+                    eduemail.setText(value.email)
+                    gender = value.gender.toString()
+                    pass = value.pass.toString()
 
-                    }
+                }
 
 
 //                Log.d(FragmentActivity.TAG, "Value is: $value")
@@ -50,21 +46,18 @@ class update_profile : AppCompatActivity() {
 
             override fun onCancelled(error: DatabaseError) {
                 // Failed to read value
-  //              Log.w(FragmentActivity.TAG, "Failed to read value.", error.toException())
+                //              Log.w(FragmentActivity.TAG, "Failed to read value.", error.toException())
             }
         })
 
         btnupsave.setOnClickListener {
+            var user =
+                userData(unm, eduemail.text.toString(), edtuphone.text.toString(), pass, gender)
+            myRef.child(unm!!).setValue(user).addOnCompleteListener {
+                Toast.makeText(this, "data updated", Toast.LENGTH_LONG).show()
 
-            myRef.child(edtname.text.toString()).child("email").setValue(eduemail.text.toString()).addOnCompleteListener {
-                Toast.makeText(this,"data updated",Toast.LENGTH_LONG).show()
             }
-            myRef.child(edtname.text.toString()).child("ph").setValue(edtphon.text.toString()).addOnCompleteListener {
-                Toast.makeText(this,"data updated",Toast.LENGTH_LONG).show()
-            }
-
 
         }
-
     }
 }
