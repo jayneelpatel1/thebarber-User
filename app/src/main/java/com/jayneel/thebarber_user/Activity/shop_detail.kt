@@ -187,26 +187,26 @@ class shop_detail : AppCompatActivity() {
 
 
                         MaterialAlertDialogBuilder(this@shop_detail)
-                            .setTitle("Confirmation for booking")
-                            .setMessage("Do you want to Book appoinment on the date $chiptext on ${time.toString()}")
+                            .setTitle("Confirmation")
+                            .setMessage("Are you sure you want to book appointment for $chiptext at ${time.toString()}")
                             .setPositiveButton("accept") { dialog, which ->
                                 // Respond to positive button press
                                 bookappiment(sunm,chiptext,time.toString(),selected,unm.toString(),chipid)
-                                Toast.makeText(this,"Appinment Booked",Toast.LENGTH_LONG).show()
+                                Toast.makeText(this,"Appointment  Booked",Toast.LENGTH_LONG).show()
                                 chip=-1
                                 startActivity(Intent(this,user_home::class.java))
                                 finish()
 
                             }
                             .setNegativeButton("Cancel"){dialog, which ->
-                                Toast.makeText(this,"Appinment Cancel",Toast.LENGTH_LONG).show()
+                                Toast.makeText(this,"Appointment Cancelled",Toast.LENGTH_LONG).show()
                             }
                             .show()
 
 
             }
             else
-                Toast.makeText(this,"Select time first and category",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Please select time first",Toast.LENGTH_LONG).show()
 
 
 

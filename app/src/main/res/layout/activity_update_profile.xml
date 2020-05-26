@@ -48,7 +48,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="35dp"
 
-            android:text="                  Edit Your Profile"
+            android:text="Edit Your Profile"
             android:textColor="#ad904e"
             android:textSize="25dp"
             android:textStyle="normal" />
