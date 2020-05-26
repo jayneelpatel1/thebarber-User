@@ -224,8 +224,8 @@
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fb_book"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_width="483dp"
+        android:layout_height="77dp"
         android:backgroundTint="@color/colorPrimary"
         android:clickable="true"
         android:gravity="center"
