@@ -1,6 +1,7 @@
 package com.jayneel.thebarber_user.Activity
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import androidx.core.view.get
 import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -39,7 +41,6 @@ class shop_detail : AppCompatActivity() {
         var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
         var unm=sp.getString("unm","abc")
         var sunm=intent.getStringExtra("shopunm")
-        Log.i("demo","on create call")
         // geting value for chips current date and next date
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
@@ -183,8 +184,26 @@ class shop_detail : AppCompatActivity() {
                 var time=chipid.text
 
                 var chiptext=getchiptext()
-                bookappiment(sunm,chiptext,time.toString(),selected,unm.toString(),chipid)
-                Toast.makeText(this,"Appinment Booked",Toast.LENGTH_LONG).show()
+
+
+                        MaterialAlertDialogBuilder(this@shop_detail)
+                            .setTitle("Confirmation for booking")
+                            .setMessage("Do you want to Book appoinment on the date $chiptext on ${time.toString()}")
+                            .setPositiveButton("accept") { dialog, which ->
+                                // Respond to positive button press
+                                bookappiment(sunm,chiptext,time.toString(),selected,unm.toString(),chipid)
+                                Toast.makeText(this,"Appinment Booked",Toast.LENGTH_LONG).show()
+                                chip=-1
+                                startActivity(Intent(this,user_home::class.java))
+                                finish()
+
+                            }
+                            .setNegativeButton("Cancel"){dialog, which ->
+                                Toast.makeText(this,"Appinment Cancel",Toast.LENGTH_LONG).show()
+                            }
+                            .show()
+
+
             }
             else
                 Toast.makeText(this,"Select time first and category",Toast.LENGTH_LONG).show()
