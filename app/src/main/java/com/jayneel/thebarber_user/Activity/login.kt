@@ -52,6 +52,10 @@ class login : AppCompatActivity() {
 //                user_home::class.java))
 //            finish()
 //        }
+
+        lblforget.setOnClickListener {
+            startActivity(Intent(this,forget_Password::class.java))
+        }
         btngotosignup.setOnClickListener {
             startActivity(Intent(this,
                 MainActivity::class.java))
