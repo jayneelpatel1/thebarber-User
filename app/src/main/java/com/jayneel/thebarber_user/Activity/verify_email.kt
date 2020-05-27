@@ -1,5 +1,6 @@
 package com.jayneel.thebarber_user.Activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
@@ -13,8 +14,14 @@ class verify_email : AppCompatActivity() {
         setContentView(R.layout.activity_verify_email)
         btnverify.setOnClickListener {
 
+
             mAuth = FirebaseAuth.getInstance();
             var user= mAuth!!.currentUser
+            val emailVerified = user!!.isEmailVerified
+            if(emailVerified){
+                startActivity(Intent(this,user_home::class.java))
+                finish()
+            }
 
             user!!.sendEmailVerification()
                 .addOnCompleteListener { task ->
