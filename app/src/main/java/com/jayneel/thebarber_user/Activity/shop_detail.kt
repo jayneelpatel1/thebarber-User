@@ -12,6 +12,7 @@ import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -34,6 +35,7 @@ class shop_detail : AppCompatActivity() {
         Log.i("demo","on start call")
     }
     val database = FirebaseDatabase.getInstance()
+    private var mAuth: FirebaseAuth? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,13 @@ class shop_detail : AppCompatActivity() {
         var unm=sp.getString("unm","abc")
         var sunm=intent.getStringExtra("shopunm")
         // geting value for chips current date and next date
+
+        mAuth = FirebaseAuth.getInstance();
+        var user= mAuth!!.currentUser
+        unm= user!!.uid
+
+
+
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
         val formatted = current.format(formatter)

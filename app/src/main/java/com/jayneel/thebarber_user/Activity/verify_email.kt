@@ -3,6 +3,7 @@ package com.jayneel.thebarber_user.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.jayneel.thebarber_user.R
 import kotlinx.android.synthetic.main.activity_verify_email.*
@@ -27,6 +28,9 @@ class verify_email : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                        // Log.d(TAG, "Email sent.")
+                        Toast.makeText(this,"Mail sent to your mail",Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this,login::class.java))
+                        finish()
                     }
                 }
         }

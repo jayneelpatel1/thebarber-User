@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener
 import com.jayneel.thebarber_user.R
 import com.jayneel.thebarber_user.helper.shopListAdapter
 import com.jayneel.thebarber_user.module.shopModule
+import com.jayneel.thebarber_user.module.userData
 import kotlinx.android.synthetic.main.activity_user_home.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
 import kotlinx.android.synthetic.main.headerlaout.*
@@ -58,12 +59,31 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
      //  textView.text="welcome ${sp.getString("unm","abc")}"
 
 
+
         setSupportActionBar(toolbarhome)
+
+        //creating hamburger icon
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+
+
        var header= navigation.getHeaderView(0)
-        header.lblhradername.text=sp.getString("unm","user not found")
+        //header.lblhradername.text=sp.getString("unm","user not found")
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("Shop")
+        val userref = database.getReference("userdata")
+        var username:String=""
+        userref.child(user.uid).addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                var value=p0.getValue(userData::class.java)
+                username= value!!.userid.toString()
+            }
+        })
+        header.lblhradername.text=username
+
         // var ad=shopListAdapter(this,data)
 
         //Navigation drawer layout settings
