@@ -67,6 +67,11 @@ class login : AppCompatActivity() {
                         //Log.d(TAG, "signInWithEmail:success")
                         val user = mAuth!!.currentUser
                         progressBar2.visibility=View.GONE
+                        var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
+                            var edt=sp.edit()
+                        if (user != null) {
+                            edt.putString("unm",user.uid)
+                        }
                         startActivity(Intent(this,
                             user_home::class.java))
                         finish()
@@ -75,7 +80,6 @@ class login : AppCompatActivity() {
                         // If sign in fails, display a message to the user.
                         //Log.w(TAG, "signInWithEmail:failure", task.exception)
                         progressBar2.visibility=View.GONE
-
                         Toast.makeText(baseContext, "Authentication failed.",
                             Toast.LENGTH_SHORT).show()
                        // updateUI(null)

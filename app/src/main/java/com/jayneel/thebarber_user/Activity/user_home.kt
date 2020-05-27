@@ -11,11 +11,13 @@ import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -39,6 +41,17 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_home)
+
+        mAuth = FirebaseAuth.getInstance();
+        var user= mAuth!!.currentUser
+        val emailVerified = user!!.isEmailVerified
+        if(!emailVerified){
+            startActivity(Intent(this,verify_email::class.java))
+        }
+        else
+        {
+            Toast.makeText(this,"email is verifiyed",Toast.LENGTH_SHORT).show()
+        }
 
 
         var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)

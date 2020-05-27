@@ -95,7 +95,6 @@ class MainActivity : AppCompatActivity() {
                             edtname.text.toString(),
                             edtemail.text.toString(),
                             edtphon.text.toString(),
-                            edtpass.text.toString(),
                             selrd, userfirebase!!.uid.toString()
                         )
                         val database = FirebaseDatabase.getInstance()

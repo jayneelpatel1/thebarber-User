@@ -26,7 +26,7 @@ class update_profile : AppCompatActivity() {
 
         // Read from the database
         var gender: String = ""
-        var pass: String = ""
+        var userid: String = ""
         // Read from the database
         myRef.child(unm!!).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -36,7 +36,8 @@ class update_profile : AppCompatActivity() {
                     edtuphone.setText(value.ph)
                     eduemail.setText(value.email)
                     gender = value.gender.toString()
-                    pass = value.pass.toString()
+                    userid = value.userid.toString()
+
 
                 }
 
@@ -52,7 +53,7 @@ class update_profile : AppCompatActivity() {
 
         btnupsave.setOnClickListener {
             var user =
-                userData(unm, eduemail.text.toString(), edtuphone.text.toString(), pass, gender)
+                userData(unm, eduemail.text.toString(), edtuphone.text.toString(), gender,userid)
             myRef.child(unm!!).setValue(user).addOnCompleteListener {
                 Toast.makeText(this, "data updated", Toast.LENGTH_LONG).show()
 
