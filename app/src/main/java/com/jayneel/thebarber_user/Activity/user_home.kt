@@ -55,6 +55,7 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
         dreawerlayout.addDrawerListener(toggler)
         toggler.syncState()
+
         navigation.setNavigationItemSelectedListener {item ->
             when(item.itemId){
                 R.id.nav_profile->{
@@ -108,6 +109,17 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
 
 
+    }
+
+    override fun onBackPressed() {
+        if(dreawerlayout.isDrawerOpen(GravityCompat.START))
+            dreawerlayout.closeDrawer(GravityCompat.START)
+        else
+            super.onBackPressed()
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        dreawerlayout.openDrawer(navigation,true)
+        return super.onSupportNavigateUp()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
