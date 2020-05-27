@@ -17,6 +17,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -33,6 +34,8 @@ import java.util.*
 class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var data= arrayListOf<shopModule>()
     var displaylist= arrayListOf<shopModule>()
+
+    private var mAuth: FirebaseAuth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_home)
@@ -64,6 +67,8 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                     )
                 }
                 R.id.nav_logout ->{
+                    mAuth = FirebaseAuth.getInstance();
+                    mAuth!!.signOut()
                     var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
                     var edt=sp.edit()
                     edt.clear()
@@ -186,6 +191,8 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                 )
             }
             R.id.nav_logout ->{
+                mAuth = FirebaseAuth.getInstance();
+                mAuth!!.signOut()
                 var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
                 var edt=sp.edit()
                 edt.clear()
