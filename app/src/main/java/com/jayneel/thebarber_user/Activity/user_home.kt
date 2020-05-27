@@ -5,13 +5,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -21,22 +26,58 @@ import com.jayneel.thebarber_user.helper.shopListAdapter
 import com.jayneel.thebarber_user.module.shopModule
 import kotlinx.android.synthetic.main.activity_user_home.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
+import kotlinx.android.synthetic.main.headerlaout.*
+import kotlinx.android.synthetic.main.headerlaout.view.*
 import java.util.*
 
-class user_home : AppCompatActivity() {
+class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var data= arrayListOf<shopModule>()
     var displaylist= arrayListOf<shopModule>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_home)
 
+
         var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
      //  textView.text="welcome ${sp.getString("unm","abc")}"
-        setSupportActionBar(toolbarhome)
 
+
+        setSupportActionBar(toolbarhome)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+       var header= navigation.getHeaderView(0)
+        header.lblhradername.text=sp.getString("unm","user not found")
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("Shop")
         // var ad=shopListAdapter(this,data)
+
+        //Navigation drawer layout settings
+        var toggler=ActionBarDrawerToggle(this,dreawerlayout,toolbar,0,0)
+
+        dreawerlayout.addDrawerListener(toggler)
+        toggler.syncState()
+        navigation.setNavigationItemSelectedListener {item ->
+            when(item.itemId){
+                R.id.nav_profile->{
+                    startActivity(Intent(this,
+                        update_profile::class.java)
+                    )
+                }
+                R.id.nav_logout ->{
+                    var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
+                    var edt=sp.edit()
+                    edt.clear()
+                    edt.commit()
+                    startActivity(Intent(this, login::class.java))
+                }
+            }
+            dreawerlayout.closeDrawer(GravityCompat.START)
+            true
+        }
+
+
+
+
+
 
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -108,9 +149,9 @@ class user_home : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
-            R.id.action_logout ->{
-                var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
-                var edt=sp.edit()
+            R.id.action_logout -> {
+                var sp = getSharedPreferences("Login", Context.MODE_PRIVATE)
+                var edt = sp.edit()
                 edt.clear()
                 edt.commit()
                 startActivity(Intent(this, login::class.java))
@@ -124,4 +165,24 @@ class user_home : AppCompatActivity() {
          else ->super.onOptionsItemSelected(item)
         }
     }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.nav_profile->{
+                startActivity(Intent(this,
+                    update_profile::class.java)
+                )
+            }
+            R.id.nav_logout ->{
+                var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
+                var edt=sp.edit()
+                edt.clear()
+                edt.commit()
+                startActivity(Intent(this, login::class.java))
+            }
+        }
+        dreawerlayout.closeDrawer(GravityCompat.START)
+        return true
+    }
 }
+
