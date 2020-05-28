@@ -40,14 +40,13 @@ class shop_detail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop_detail)
-        var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
-        var unm=sp.getString("unm","abc")
+
         var sunm=intent.getStringExtra("shopunm")
         // geting value for chips current date and next date
 
         mAuth = FirebaseAuth.getInstance();
         var user= mAuth!!.currentUser
-        unm= user!!.uid
+        var unm= user!!.uid
 
 
 

@@ -12,9 +12,11 @@
         android:layout_width="106dp"
         android:layout_height="33dp"
         android:layout_marginStart="48dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="16dp"
         android:text="TextView"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/lblbdate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +26,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="63dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="10dp"
         android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblbsalonname" />
+
+    <TextView
+        android:id="@+id/lblstatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="59dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

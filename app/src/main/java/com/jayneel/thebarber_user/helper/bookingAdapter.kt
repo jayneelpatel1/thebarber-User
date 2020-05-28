@@ -13,6 +13,7 @@ class bookingAdapter(var ctx: Activity, var arlist:ArrayList<appinmrntMoule>): R
     inner class viewholder(v: View):RecyclerView.ViewHolder(v){
         var shopname=v.lblbsalonname
         var date=v.lblbdate
+        var satus=v.lblstatus
 
     }
 
@@ -29,5 +30,6 @@ class bookingAdapter(var ctx: Activity, var arlist:ArrayList<appinmrntMoule>): R
 
         holder.shopname.text=arlist[position].shopname.toString()
         holder.date.text=arlist[position].date.toString()
+        holder.satus.text=arlist[position].staus.toString()
     }
 }
