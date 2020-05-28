@@ -17,6 +17,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -24,10 +25,12 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
 import com.jayneel.thebarber_user.R
 import com.jayneel.thebarber_user.helper.shopListAdapter
 import com.jayneel.thebarber_user.module.shopModule
 import com.jayneel.thebarber_user.module.userData
+import kotlinx.android.synthetic.main.activity_update_profile.*
 import kotlinx.android.synthetic.main.activity_user_home.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
 import kotlinx.android.synthetic.main.headerlaout.*
@@ -46,13 +49,13 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         mAuth = FirebaseAuth.getInstance();
         var user= mAuth!!.currentUser
         val emailVerified = user!!.isEmailVerified
-        if(!emailVerified){
-            startActivity(Intent(this,verify_email::class.java))
-        }
-        else
-        {
-            Toast.makeText(this,"email is verifiyed",Toast.LENGTH_SHORT).show()
-        }
+//        if(!emailVerified){
+//            startActivity(Intent(this,verify_email::class.java))
+//        }
+//        else
+//        {
+//            Toast.makeText(this,"email is verifiyed",Toast.LENGTH_SHORT).show()
+//        }
 
 
         var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
@@ -82,8 +85,15 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                 var value=p0.getValue(userData::class.java)
                 username= value!!.nm.toString()
                 email= value!!.email.toString()
+                if(value.imgurl!="") {
+                    val storage = FirebaseStorage.getInstance()
+                    val storageReference = storage.getReferenceFromUrl(value.imgurl!!)
 
-
+                    storageReference.downloadUrl.addOnSuccessListener {
+                        val imgurl = it.toString()
+                        Glide.with(this@user_home).load(imgurl).into(header.imgheader).view
+                    }
+                }
                 header.lblhradername.text=username
                 header.lblheaderemail.text=email
             }
@@ -228,22 +238,6 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.nav_profile->{
-                startActivity(Intent(this,
-                    update_profile::class.java)
-                )
-            }
-            R.id.nav_logout ->{
-                mAuth = FirebaseAuth.getInstance();
-                mAuth!!.signOut()
-                var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
-                var edt=sp.edit()
-                edt.clear()
-                edt.commit()
-                startActivity(Intent(this, login::class.java))
-            }
-        }
         dreawerlayout.closeDrawer(GravityCompat.START)
         return true
     }

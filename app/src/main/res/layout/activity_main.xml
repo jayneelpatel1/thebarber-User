@@ -24,7 +24,7 @@
                 android:layout_gravity="center">
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/imageheader"
                     android:layout_width="467dp"
                     android:layout_height="210dp"
                     android:layout_weight="1"
