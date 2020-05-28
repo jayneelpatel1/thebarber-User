@@ -4,16 +4,21 @@
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_account_circle_black_24dp"
-            android:title="Profile"/>
+            android:title="My Profile"/>
         <item
             android:id="@+id/nav_bookings"
-            android:icon="@drawable/ic_account_circle_black_24dp"
-            android:title="Bookings"/>
+            android:icon="@drawable/ic_event_available_black_24dp"
+            android:title="My Appointments"/>
     </group>
 
 
     <item android:title="Account Settings">
         <menu>
+            <item
+                android:id="@+id/nav_cpassword"
+                android:icon="@drawable/ic_mode_edit_black_24dp"
+                android:title="Change Password"/>
+
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_power_settings_new_black_24dp"
