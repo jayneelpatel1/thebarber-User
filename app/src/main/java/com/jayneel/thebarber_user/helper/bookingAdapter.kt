@@ -5,10 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jayneel.thebarber_user.R
+import com.jayneel.thebarber_user.module.appinmrntMoule
 import com.jayneel.thebarber_user.module.shopModule
 import kotlinx.android.synthetic.main.booking_history_layout.view.*
 
-class bookingAdapter(var ctx: Activity, var arlist:ArrayList<shopModule>): RecyclerView.Adapter<bookingAdapter.viewholder>() {
+class bookingAdapter(var ctx: Activity, var arlist:ArrayList<appinmrntMoule>): RecyclerView.Adapter<bookingAdapter.viewholder>() {
     inner class viewholder(v: View):RecyclerView.ViewHolder(v){
         var shopname=v.lblbsalonname
         var date=v.lblbdate
@@ -26,7 +27,7 @@ class bookingAdapter(var ctx: Activity, var arlist:ArrayList<shopModule>): Recyc
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
 
-        holder.shopname.text=arlist[position].shopName.toString()
-        holder.date.text=arlist[position].city.toString()
+        holder.shopname.text=arlist[position].shopname.toString()
+        holder.date.text=arlist[position].date.toString()
     }
 }

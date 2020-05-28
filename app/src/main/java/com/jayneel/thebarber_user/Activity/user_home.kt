@@ -72,6 +72,7 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         val myRef = database.getReference("Shop")
         val userref = database.getReference("userdata")
         var username:String=""
+        var email:String=""
         userref.child(user.uid).addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
 
@@ -79,10 +80,15 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
             override fun onDataChange(p0: DataSnapshot) {
                 var value=p0.getValue(userData::class.java)
-                username= value!!.userid.toString()
+                username= value!!.nm.toString()
+                email= value!!.email.toString()
+
+
+                header.lblhradername.text=username
+                header.lblheaderemail.text=email
             }
         })
-        header.lblhradername.text=username
+
 
         // var ad=shopListAdapter(this,data)
 
@@ -97,6 +103,11 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                 R.id.nav_profile->{
                     startActivity(Intent(this,
                         update_profile::class.java)
+                    )
+                }
+                R.id.nav_bookings->{
+                    startActivity(Intent(this,
+                        bookings::class.java)
                     )
                 }
                 R.id.nav_logout ->{
