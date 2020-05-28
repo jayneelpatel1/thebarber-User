@@ -24,7 +24,7 @@
 
 
                 <ImageView
-                    android:id="@+id/profileupdate"
+                    android:id="@+id/profileupdate1"
                     android:layout_width="494dp"
                     android:layout_height="202dp"
                     android:layout_weight="1"
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="70dp"
 
             android:layout_marginTop="35dp"
             android:text="Edit Your Profile"
@@ -76,9 +76,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="30dp"
-                android:text="Email Address"
+                android:text="Name"
                 android:textColor="#3a3a3a" />
 
 
@@ -89,11 +89,11 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/edittext_background"
-                android:drawableLeft="@drawable/ic_email_black_24dp"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
                 android:drawablePadding="20dp"
                 android:ems="10"
                 android:gravity="left"
-                android:hint="Email Assress"
+                android:hint="Name"
                 android:inputType="textPersonName"
                 android:padding="10dp"
                 android:paddingLeft="10dp" />
@@ -116,7 +116,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:textColor="#3a3a3a"
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
@@ -140,6 +140,35 @@
         android:inputType="textPersonName"/>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Upload Your Picture"
+                android:textColor="#3a3a3a"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/profileupdate"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/edittext_background"
+                app:srcCompat="@drawable/ic_cloud_upload_black_24dp" />
+
+        </LinearLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
