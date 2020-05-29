@@ -296,7 +296,7 @@ class shop_detail : AppCompatActivity() {
         val myRef = database.getReference("appinment")
         var sp=getSharedPreferences("username",Context.MODE_PRIVATE)
         var username=sp.getString("username",unm)
-        var ap=appinmrntMoule(date,time,selected,unm,"",sunm,username)
+        var ap=appinmrntMoule(date,time,selected,username,"",sunm,unm)
         myRef.child(sunm.toString()).child(date).child(time).setValue(ap).addOnCompleteListener {
             var key=myRef.child(sunm.toString()).child(date).child("time").push().key
             myRef.child(sunm.toString()).child(date).child("time").child(key.toString()).setValue(time)
