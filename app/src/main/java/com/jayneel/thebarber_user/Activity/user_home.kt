@@ -49,13 +49,6 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         mAuth = FirebaseAuth.getInstance();
         var user= mAuth!!.currentUser
         val emailVerified = user!!.isEmailVerified
-//        if(!emailVerified){
-//            startActivity(Intent(this,verify_email::class.java))
-//        }
-//        else
-//        {
-//            Toast.makeText(this,"email is verifiyed",Toast.LENGTH_SHORT).show()
-//        }
 
 
         var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
@@ -94,6 +87,11 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                         Glide.with(this@user_home).load(imgurl).into(header.imgheader).view
                     }
                 }
+                var sp=getSharedPreferences("username", Context.MODE_PRIVATE)
+                var edt=sp.edit()
+                edt.putString("username",username)
+                edt.commit()
+                edt.apply()
                 header.lblhradername.text=username
                 header.lblheaderemail.text=email
             }

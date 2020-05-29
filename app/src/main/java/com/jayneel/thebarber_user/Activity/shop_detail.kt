@@ -294,7 +294,9 @@ class shop_detail : AppCompatActivity() {
         chipid:Chip?
     ) {
         val myRef = database.getReference("appinment")
-        var ap=appinmrntMoule(date,time,selected,unm)
+        var sp=getSharedPreferences("username",Context.MODE_PRIVATE)
+        var username=sp.getString("username",unm)
+        var ap=appinmrntMoule(date,time,selected,unm,"",sunm,username)
         myRef.child(sunm.toString()).child(date).child(time).setValue(ap).addOnCompleteListener {
             var key=myRef.child(sunm.toString()).child(date).child("time").push().key
             myRef.child(sunm.toString()).child(date).child("time").child(key.toString()).setValue(time)
@@ -313,7 +315,7 @@ class shop_detail : AppCompatActivity() {
         var ap=appinmrntMoule(date,time,selected,unm,"Remaining",sunm,uniq)
 
         myRef.child(unm!!).child("history").child(uniq!!).setValue(ap).addOnCompleteListener {
-            Toast.makeText(this,"add to history",Toast.LENGTH_SHORT).show()
+         //   Toast.makeText(this,"add to history",Toast.LENGTH_SHORT).show()
         }
     }
 
