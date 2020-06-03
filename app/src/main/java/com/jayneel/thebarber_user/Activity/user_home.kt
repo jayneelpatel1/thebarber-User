@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageException
 import com.jayneel.thebarber_user.R
 import com.jayneel.thebarber_user.helper.shopListAdapter
 import com.jayneel.thebarber_user.module.shopModule
@@ -163,7 +164,13 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         })
         rv.layoutManager=LinearLayoutManager(this@user_home,LinearLayoutManager.VERTICAL,false)
 
-
+        lblselectcity.setOnClickListener {
+            var items= arrayListOf<String>("Surat","Navsari","Anand")
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Select City")
+                .setView(R.layout.activity_bookings)
+                .show()
+        }
 
 
     }

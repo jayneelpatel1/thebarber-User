@@ -199,8 +199,9 @@ class shop_detail : AppCompatActivity() {
                             .setMessage("Are you sure you want to book appointment for $chiptext at ${time.toString()}")
                             .setPositiveButton("accept") { dialog, which ->
                                 // Respond to positive button press
-                                bookappiment(sunm,chiptext,time.toString(),selected,unm.toString(),chipid)
-                                bookhistory(sunm,chiptext,time.toString(),selected,unm.toString(),chipid)
+                               var uniq= bookhistory(sunm,chiptext,time.toString(),selected,unm.toString(),chipid)
+                                bookappiment(sunm,chiptext,time.toString(),selected,unm.toString(),chipid,uniq)
+
 
                                 Toast.makeText(this,"Appointment  Booked",Toast.LENGTH_LONG).show()
                                 chip=-1
@@ -291,12 +292,12 @@ class shop_detail : AppCompatActivity() {
         time: String,
         selected: ArrayList<iteamModule>,
         unm: String?,
-        chipid:Chip?
+        chipid:Chip?,uniq:String
     ) {
         val myRef = database.getReference("appinment")
         var sp=getSharedPreferences("username",Context.MODE_PRIVATE)
         var username=sp.getString("username",unm)
-        var ap=appinmrntMoule(date,time,selected,username,"",sunm,unm)
+        var ap=appinmrntMoule(date,time,selected,username,"",sunm,uniq)
         myRef.child(sunm.toString()).child(date).child(time).setValue(ap).addOnCompleteListener {
             var key=myRef.child(sunm.toString()).child(date).child("time").push().key
             myRef.child(sunm.toString()).child(date).child("time").child(key.toString()).setValue(time)
@@ -309,7 +310,7 @@ class shop_detail : AppCompatActivity() {
         selected: ArrayList<iteamModule>,
         unm: String?,
         chipid:Chip?
-    ) {
+    ):String {
         val myRef = database.getReference("userdata")
         var uniq= myRef.child(unm!!).child("history").push().key
         var ap=appinmrntMoule(date,time,selected,unm,"Remaining",sunm,uniq)
@@ -317,53 +318,9 @@ class shop_detail : AppCompatActivity() {
         myRef.child(unm!!).child("history").child(uniq!!).setValue(ap).addOnCompleteListener {
          //   Toast.makeText(this,"add to history",Toast.LENGTH_SHORT).show()
         }
+        return uniq
     }
 
-//    private fun isappinment(
-//        chiptext: String,
-//        sunm: String?,
-//        selected: ArrayList<iteamModule>,
-//        unm: String?
-//    ){
-//        val myRef = database.getReference("appinment")
-//        var ans= arrayListOf<iteamModule>()
-//        var k=""
-//        var tt:String=""
-//        if (sunm != null) {
-//            myRef.child(sunm).child(chiptext).addListenerForSingleValueEvent(object :ValueEventListener{
-//                override fun onCancelled(p0: DatabaseError) {
-//                    Toast.makeText(this@shop_detail,"Somerthing Wrog Try ofter sometime",Toast.LENGTH_LONG).show()
-//                }
-//
-//                override fun onDataChange(p0: DataSnapshot) {
-//
-//                    for(v in p0.children)
-//                    {
-//                        k=v.key.toString()
-//                    }
-//                    for(v in p0.children){}
-//
-//                    var sum:Int=0
-//                    for(t in ans)
-//                    {
-//                        sum=sum+t.minute.toString().toInt()
-//                    }
-//
-//                    val formatter = DateTimeFormatter.ofPattern("HH:mm")
-//                    val formatted = k.format(formatter)
-//
-//                        val df = SimpleDateFormat("HH:mm")
-//                        val d: Date = df.parse(formatted.toString())
-//                        val cal = Calendar.getInstance()
-//                        cal.time = d
-//                        cal.add(Calendar.MINUTE, sum)
-//                        val newTime: String = df.format(cal.time)
-//                    bookappiment(sunm,chiptext,newTime.toString(),selected,unm)
-//                }
-//            })
-//        }
-//
-//    }
     private fun getchiptext():String {
         return findViewById<Chip>(chipGroup.checkedChipId).text.toString()
     }
