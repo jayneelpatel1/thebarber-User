@@ -133,7 +133,7 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
         lblselectcity.setOnClickListener {
             val builder=Dialog(this)
-            builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
+          //  builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
             builder.setCancelable(false)
             builder.setTitle("Select City")
             builder.setContentView(R.layout.activity_select_city)
@@ -141,6 +141,7 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             btn.setOnClickListener {
                var city= builder.edtcity.text.toString()
                 lblselectcity.text=city
+               //display only selected city
                 shopdataupdate(myRef,city)
                 builder.dismiss()
             }

@@ -36,11 +36,12 @@ class shop_detail : AppCompatActivity() {
     }
     val database = FirebaseDatabase.getInstance()
     private var mAuth: FirebaseAuth? = null
+    private var shopst:String?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop_detail)
-
+        shopst=intent.getStringExtra("st")
         var sunm=intent.getStringExtra("shopunm")
         // geting value for chips current date and next date
 
@@ -182,8 +183,20 @@ class shop_detail : AppCompatActivity() {
 
 
 
+        if(shopst.equals("close",true)){
+            MaterialAlertDialogBuilder(this@shop_detail)
+                .setTitle("Shop is close")
+                .setMessage("We are sorry we open soon")
+                .setPositiveButton("ok") { dialog, which ->
+                    startActivity(Intent(this,user_home::class.java))
+
+                }
+                .show()
+        }
 
         fb_book.setOnClickListener {
+
+
 
            var chip= chipGroupSlot.checkedChipId
 
