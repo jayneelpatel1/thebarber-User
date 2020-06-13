@@ -1,40 +1,32 @@
 package com.jayneel.thebarber_user.Activity
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.appcompat.app.ActionBar
+import android.view.Window
+import android.widget.Button
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageException
 import com.jayneel.thebarber_user.R
 import com.jayneel.thebarber_user.helper.shopListAdapter
 import com.jayneel.thebarber_user.module.shopModule
 import com.jayneel.thebarber_user.module.userData
-import kotlinx.android.synthetic.main.activity_update_profile.*
+import kotlinx.android.synthetic.main.activity_select_city.*
 import kotlinx.android.synthetic.main.activity_user_home.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
-import kotlinx.android.synthetic.main.headerlaout.*
 import kotlinx.android.synthetic.main.headerlaout.view.*
 import java.util.*
 
@@ -136,20 +128,55 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
 
 
+        //show data first time
+        shopdataupdate(myRef)
+
+        lblselectcity.setOnClickListener {
+            val builder=Dialog(this)
+            builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            builder.setCancelable(false)
+            builder.setTitle("Select City")
+            builder.setContentView(R.layout.activity_select_city)
+            var btn=builder.findViewById<Button>(R.id.btncity)
+            btn.setOnClickListener {
+               var city= builder.edtcity.text.toString()
+                lblselectcity.text=city
+                shopdataupdate(myRef,city)
+                builder.dismiss()
+            }
+            builder.show()
+
+        }
 
 
+    }
+
+    private fun shopdataupdate(
+        myRef: DatabaseReference,
+        city: String?=null
+    ) {
+        data.clear()
+        displaylist.clear()
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 data.clear()
                 pbhome.visibility=View.VISIBLE
                 var ad=shopListAdapter(this@user_home,displaylist)
-              for(v in dataSnapshot.children) {
-                  val value = v.getValue(shopModule::class.java)
-                  Log.d("key",value.toString())
-                  if (value != null) {
-                        data.add(value)
-                  }
-              }
+                for(v in dataSnapshot.children) {
+                    val value = v.getValue(shopModule::class.java)
+                    Log.d("key",value.toString())
+                    if (value != null) {
+                        if(city!=null)
+                        {
+                            if(value.city.equals(city,true))
+                            {
+                                data.add(value)
+                            }
+                        }
+                        else
+                            data.add(value)
+                    }
+                }
                 displaylist.addAll(data)
                 pbhome.visibility=View.GONE
                 rv.adapter=ad
@@ -163,16 +190,6 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             }
         })
         rv.layoutManager=LinearLayoutManager(this@user_home,LinearLayoutManager.VERTICAL,false)
-
-        lblselectcity.setOnClickListener {
-            var items= arrayListOf<String>("Surat","Navsari","Anand")
-            MaterialAlertDialogBuilder(this)
-                .setTitle("Select City")
-                .setView(R.layout.activity_bookings)
-                .show()
-        }
-
-
     }
 
     override fun onBackPressed() {
@@ -234,6 +251,11 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                 true
             }
             R.id.action_edit ->{
+                startActivity(Intent(this,
+                    update_profile::class.java))
+                true
+            }
+            R.id.action_selectCity ->{
                 startActivity(Intent(this,
                     update_profile::class.java))
                 true

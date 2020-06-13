@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Activity.forget_Password"></activity>
+        <activity android:name=".Activity.select_city"></activity>
+        <activity android:name=".Activity.forget_Password" />
         <activity android:name=".Activity.verify_email" />
         <activity android:name=".Activity.bookings" />
         <activity
