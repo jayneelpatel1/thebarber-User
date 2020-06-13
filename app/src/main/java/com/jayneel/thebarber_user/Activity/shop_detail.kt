@@ -73,7 +73,8 @@ class shop_detail : AppCompatActivity() {
                     val value = v.getValue(iteamModule::class.java)
                     Log.d("key",value.toString())
                     if (value != null) {
-                        data.add(value)
+                        if(value.status.equals("On"))
+                            data.add(value)
                     }
                 }
                 selected=ad.getselectedlist()
