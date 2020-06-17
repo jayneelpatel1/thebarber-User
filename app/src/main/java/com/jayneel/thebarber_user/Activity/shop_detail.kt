@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.activity_shop_detail.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -197,10 +198,9 @@ class shop_detail : AppCompatActivity() {
         fb_book.setOnClickListener {
 
 
-
            var chip= chipGroupSlot.checkedChipId
 
-            if(chip >0 &&!selected.equals(null))
+            if(chip >0 &&!selected.equals(null) && shopst=="Open")
             {
                 var chipid=findViewById<Chip>(chipGroupSlot.checkedChipId)
                 var time=chipid.text
@@ -240,42 +240,22 @@ class shop_detail : AppCompatActivity() {
            }
 
     private fun chipdisable(i: String) {
-        if(chip21.text.equals(i))
-            chip21.visibility=View.GONE
-        if(chip20.text.equals(i))
-            chip20.visibility=View.GONE
-        if(chip2.text.equals(i))
-            chip2.visibility=View.GONE
-        if(chip5.text.equals(i))
-            chip5.visibility=View.GONE
-        if(chip6.text.equals(i))
-            chip6.visibility=View.GONE
-        if(chip7.text.equals(i))
-            chip7.visibility=View.GONE
-        if(chip8.text.equals(i))
-            chip8.visibility=View.GONE
-        if(chip9.text.equals(i))
-            chip9.visibility=View.GONE
-        if(chip10.text.equals(i))
-            chip10.visibility=View.GONE
-        if(chip11.text.equals(i))
-            chip11.visibility=View.GONE
-        if(chip12.text.equals(i))
-            chip12.visibility=View.GONE
-        if(chip13.text.equals(i))
-            chip13.visibility=View.GONE
-        if(chip14.text.equals(i))
-            chip14.visibility=View.GONE
-        if(chip15.text.equals(i))
-            chip15.visibility=View.GONE
-        if(chip16.text.equals(i))
-            chip16.visibility=View.GONE
-        if(chip17.text.equals(i))
-            chip17.visibility=View.GONE
-        if(chip18.text.equals(i))
-            chip18.visibility=View.GONE
-        if(chip19.text.equals(i))
-            chip19.visibility=View.GONE
+        var chk= arrayListOf<Chip>(chip21,chip20,chip2,chip5,chip6,chip7,chip8,chip9,chip10,chip11,chip12,chip13,chip14,chip15,chip16,chip17,chip18,chip19)
+        for (chip in chk){
+            if(chip.text.equals(i))
+                chip.visibility=View.GONE
+        }
+        val current = LocalDateTime.now()
+        var time=current.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+        Toast.makeText(this,time,Toast.LENGTH_LONG).show()
+        for (chip in chk)
+        {
+            var chiptime=chip.text.toString()
+            if(chiptime>time){
+
+            }
+        }
+
 
     }
 
@@ -311,7 +291,7 @@ class shop_detail : AppCompatActivity() {
         val myRef = database.getReference("appinment")
         var sp=getSharedPreferences("username",Context.MODE_PRIVATE)
         var username=sp.getString("username",unm)
-        var ap=appinmrntMoule(date,time,selected,username,"",sunm,uniq)
+        var ap=appinmrntMoule(date,time,selected,username,"",sunm,uniq,unm)
         myRef.child(sunm.toString()).child(date).child(time).setValue(ap).addOnCompleteListener {
             var key=myRef.child(sunm.toString()).child(date).child("time").push().key
             myRef.child(sunm.toString()).child(date).child("time").child(key.toString()).setValue(time)

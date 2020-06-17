@@ -49,7 +49,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+                tools:listitem="@layout/shop_list_cust">
 
 
             </androidx.recyclerview.widget.RecyclerView>
