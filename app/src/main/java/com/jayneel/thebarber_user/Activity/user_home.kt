@@ -16,6 +16,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.dialog.MaterialDialogs
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -132,6 +134,7 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         shopdataupdate(myRef)
 
         lblselectcity.setOnClickListener {
+
             val builder=Dialog(this)
           //  builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
             builder.setCancelable(false)
@@ -140,9 +143,10 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             var btn=builder.findViewById<Button>(R.id.btncity)
             btn.setOnClickListener {
                var city= builder.edtcity.text.toString()
-                lblselectcity.text=city
-               //display only selected city
-                shopdataupdate(myRef,city)
+                lblselectcity.text="City : "+city
+                if(city!="") {
+                    shopdataupdate(myRef, city)
+                }
                 builder.dismiss()
             }
             builder.show()
@@ -257,8 +261,7 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                 true
             }
             R.id.action_selectCity ->{
-                startActivity(Intent(this,
-                    update_profile::class.java))
+
                 true
             }
          else ->super.onOptionsItemSelected(item)

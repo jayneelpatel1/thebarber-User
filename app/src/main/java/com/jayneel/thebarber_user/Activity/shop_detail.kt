@@ -7,8 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.get
-import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -188,6 +186,7 @@ class shop_detail : AppCompatActivity() {
             MaterialAlertDialogBuilder(this@shop_detail)
                 .setTitle("Shop is close")
                 .setMessage("We are sorry we open soon")
+                .setCancelable(false)
                 .setPositiveButton("ok") { dialog, which ->
                     startActivity(Intent(this,user_home::class.java))
 
