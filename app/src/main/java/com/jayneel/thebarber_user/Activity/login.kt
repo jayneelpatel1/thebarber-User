@@ -25,7 +25,7 @@ class login : AppCompatActivity() {
 
     private var mAuth: FirebaseAuth? = null
     val database = FirebaseDatabase.getInstance()
-    val myRef = database.getReference("userdata")
+    val myRef = database.getReference("Shop")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -63,7 +63,11 @@ class login : AppCompatActivity() {
 
 
         btnlogin.setOnClickListener {
+            var flag=0
             progressBar2.visibility=View.VISIBLE
+
+
+
             mAuth!!.signInWithEmailAndPassword(edtunm.text.toString(), edtlpass.text.toString())
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -74,11 +78,39 @@ class login : AppCompatActivity() {
                         var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
                             var edt=sp.edit()
                         if (user != null) {
-                            edt.putString("unm",user.uid)
+                            myRef.child(user.uid).addValueEventListener(object : ValueEventListener {
+                                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                    // This method is called once with the initial value and again
+                                    // whenever data at this location is updated.
+                                    val value = dataSnapshot.getValue(userData::class.java)
+                                    if (value != null) {
+                                        flag=1
+
+                                    }
+                                    if(flag!=1) {
+                                        edt.putString("unm", user.uid)
+                                        startActivity(
+                                            Intent(
+                                                this@login,
+                                                user_home::class.java
+                                            )
+                                        )
+                                        finish()
+                                    }
+                                    else
+                                        Toast.makeText(this@login,"Invalid Email",Toast.LENGTH_LONG).show()
+
+
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    // Failed to read value
+                                    //Log.w(FragmentActivity.TAG, "Failed to read value.", error.toException())
+                                }
+                            })
+
                         }
-                        startActivity(Intent(this,
-                            user_home::class.java))
-                        finish()
+
                        // updateUI(user)
                     } else {
                         // If sign in fails, display a message to the user.
@@ -93,36 +125,7 @@ class login : AppCompatActivity() {
                     // ...
                 }
 
-//            myRef.child(edtunm.text.toString()).addValueEventListener(object : ValueEventListener {
-//                override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                    // This method is called once with the initial value and again
-//                    // whenever data at this location is updated.
-//                    val value = dataSnapshot.getValue(userData::class.java)
-//                    if (value != null) {
-//                        if(value.pass.equals(edtlpass.text.toString())){
-//                            var sp=getSharedPreferences("Login", Context.MODE_PRIVATE)
-//                            var edt=sp.edit()
-//                            edt.putString("unm",edtunm.text.toString())
-//                            edt.apply()
-//                            edt.commit()
-//                            startActivity(Intent(this@login,
-//                                user_home::class.java))
-//                            finish()
-//                        }
-//                        else
-//                        {
-//                            Toast.makeText(this@login,"invalid user name or password",Toast.LENGTH_SHORT).show()
-//                        }
-//
-//                    }
-//
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//                    // Failed to read value
-//                    //Log.w(FragmentActivity.TAG, "Failed to read value.", error.toException())
-//                }
-//            })
+
         }
     }
 }
