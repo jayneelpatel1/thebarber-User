@@ -199,7 +199,7 @@ class shop_detail : AppCompatActivity() {
 
            var chip= chipGroupSlot.checkedChipId
 
-            if(chip >0 &&!selected.equals(null) && shopst=="Open")
+            if(chip >0 &&!selected.size.equals(0) && shopst=="Open")
             {
                 var chipid=findViewById<Chip>(chipGroupSlot.checkedChipId)
                 var time=chipid.text
@@ -223,14 +223,14 @@ class shop_detail : AppCompatActivity() {
 
                             }
                             .setNegativeButton("Cancel"){dialog, which ->
-                                Toast.makeText(this,"Appointment Cancelled",Toast.LENGTH_LONG).show()
+                                Toast.makeText(this,"Appointment not booked",Toast.LENGTH_LONG).show()
                             }
                             .show()
 
 
             }
             else
-                Toast.makeText(this,"Please select time first",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Please select date and time and serviec",Toast.LENGTH_LONG).show()
 
 
 
