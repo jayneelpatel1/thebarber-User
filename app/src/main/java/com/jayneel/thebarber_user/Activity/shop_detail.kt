@@ -65,9 +65,10 @@ class shop_detail : AppCompatActivity() {
         val myRef = database.getReference("Category")
         var data= arrayListOf<iteamModule>()
         var selected= arrayListOf<iteamModule>()
-        myRef.child(sunm).addListenerForSingleValueEvent(object : ValueEventListener {
+        myRef.child(sunm).addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                data.clear()
                 var ad= shopIteamAdapter(this@shop_detail,data)
                 for(v in dataSnapshot.children) {
                     val value = v.getValue(iteamModule::class.java)

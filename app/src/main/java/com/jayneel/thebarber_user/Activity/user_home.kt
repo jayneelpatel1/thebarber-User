@@ -64,7 +64,7 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         val userref = database.getReference("userdata")
         var username:String=""
         var email:String=""
-        userref.child(user.uid).addListenerForSingleValueEvent(object :ValueEventListener{
+        userref.child(user.uid).addValueEventListener(object :ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
 
             }
@@ -165,6 +165,7 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 data.clear()
+                displaylist.clear()
                 pbhome.visibility=View.VISIBLE
                 var ad=shopListAdapter(this@user_home,displaylist)
                 for(v in dataSnapshot.children) {
