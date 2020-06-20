@@ -28,7 +28,7 @@ class bookingAdapter(var ctx: Activity, var arlist:ArrayList<appinmrntMoule>): R
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
 
-        holder.shopname.text=arlist[position].shopname.toString()
+        holder.shopname.text=arlist[position].nm.toString()
         holder.date.text=arlist[position].date.toString()
         holder.satus.text=arlist[position].staus.toString()
     }

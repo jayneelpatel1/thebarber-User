@@ -42,6 +42,7 @@ class shop_detail : AppCompatActivity() {
         setContentView(R.layout.activity_shop_detail)
         shopst=intent.getStringExtra("st")
         var sunm=intent.getStringExtra("shopunm")
+        var nm=intent.getStringExtra("nm")
         // geting value for chips current date and next date
 
         mAuth = FirebaseAuth.getInstance();
@@ -213,8 +214,8 @@ class shop_detail : AppCompatActivity() {
                             .setMessage("Are you sure you want to book appointment for $chiptext at ${time.toString()}")
                             .setPositiveButton("accept") { dialog, which ->
                                 // Respond to positive button press
-                               var uniq= bookhistory(sunm,chiptext,time.toString(),selected,unm.toString(),chipid)
-                                bookappiment(sunm,chiptext,time.toString(),selected,unm.toString(),chipid,uniq)
+                               var uniq= bookhistory(sunm,chiptext,time.toString(),selected,unm.toString(),chipid,nm)
+                                bookappiment(sunm,chiptext,time.toString(),selected,unm.toString(),chipid,uniq,nm)
 
 
                                 Toast.makeText(this,"Appointment  Booked",Toast.LENGTH_LONG).show()
@@ -286,12 +287,14 @@ class shop_detail : AppCompatActivity() {
         time: String,
         selected: ArrayList<iteamModule>,
         unm: String?,
-        chipid:Chip?,uniq:String
+        chipid:Chip?,
+        uniq:String,
+        nm:String
     ) {
         val myRef = database.getReference("appinment")
         var sp=getSharedPreferences("username",Context.MODE_PRIVATE)
         var username=sp.getString("username",unm)
-        var ap=appinmrntMoule(date,time,selected,username,"",sunm,uniq,unm)
+        var ap=appinmrntMoule(date,time,selected,username,"",sunm,uniq,unm,nm)
         myRef.child(sunm.toString()).child(date).child(time).setValue(ap).addOnCompleteListener {
             var key=myRef.child(sunm.toString()).child(date).child("time").push().key
             myRef.child(sunm.toString()).child(date).child("time").child(key.toString()).setValue(time)
@@ -303,11 +306,12 @@ class shop_detail : AppCompatActivity() {
         time: String,
         selected: ArrayList<iteamModule>,
         unm: String?,
-        chipid:Chip?
+        chipid:Chip?,nm: String?
+
     ):String {
         val myRef = database.getReference("userdata")
         var uniq= myRef.child(unm!!).child("history").push().key
-        var ap=appinmrntMoule(date,time,selected,unm,"Remaining",sunm,uniq)
+        var ap=appinmrntMoule(date,time,selected,unm,"Remaining",sunm,uniq,null,nm)
 
         myRef.child(unm!!).child("history").child(uniq!!).setValue(ap).addOnCompleteListener {
          //   Toast.makeText(this,"add to history",Toast.LENGTH_SHORT).show()

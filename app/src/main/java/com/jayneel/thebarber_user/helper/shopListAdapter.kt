@@ -54,6 +54,7 @@ class shopListAdapter(var ctx:Activity,var arlist:ArrayList<shopModule>):Recycle
         holder.itemView.setOnClickListener {
             var int1=Intent(ctx,shop_detail::class.java)
             int1.putExtra("st",arlist[position].status.toString())
+            int1.putExtra("nm",arlist[position].shopName.toString())
             int1.putExtra("shopunm",arlist[position].userName.toString())
             ctx.startActivity(int1)
         }
