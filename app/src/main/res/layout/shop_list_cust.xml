@@ -69,7 +69,9 @@
 
     <RatingBar
         android:id="@+id/ratingBar"
+        android:progressTint="@color/colorAccent"
         style="?android:attr/ratingBarStyleSmall"
+        android:theme="@style/Theme.MaterialComponents.DayNight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

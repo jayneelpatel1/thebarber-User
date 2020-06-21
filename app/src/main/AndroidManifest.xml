@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jayneel.thebarber_user">
-
+<uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -39,6 +39,20 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <service
+            android:name=".servies.MyFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".servies.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
+
 
 </manifest>

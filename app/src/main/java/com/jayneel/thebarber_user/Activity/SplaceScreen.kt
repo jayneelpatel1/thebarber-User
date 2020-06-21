@@ -4,8 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
 import com.jayneel.thebarber_user.R
 
 class SplaceScreen : AppCompatActivity() {
@@ -23,6 +27,21 @@ class SplaceScreen : AppCompatActivity() {
         imagelogo.startAnimation(zoom_logo)
 
         Handler().postDelayed({
+            FirebaseInstanceId.getInstance().instanceId
+                .addOnCompleteListener(OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        Log.w("TAG", "getInstanceId failed", task.exception)
+                        return@OnCompleteListener
+                    }
+
+                    // Get new Instance ID token
+                    val token = task.result?.token
+
+                    // Log and toast
+                    val msg =token
+                    Log.i("TAG", msg)
+                    Toast.makeText(baseContext, msg, Toast.LENGTH_LONG).show()
+                })
             startActivity(Intent(this,login::class.java))
             finish()
         },2500)
