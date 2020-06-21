@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.dialog.MaterialDialogs
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.jayneel.thebarber_user.R
 import com.jayneel.thebarber_user.module.appinmrntMoule
 import com.jayneel.thebarber_user.module.ratingModel
@@ -60,7 +63,28 @@ class bookingAdapter(var ctx: Activity, var arlist:ArrayList<appinmrntMoule>): R
                 var uniq=ref.child(shopid).child("rating").push().key
                 var data=ratingModel(uniq,shopid,ratecontrol,user)
                 ref.child(shopid).child("rating").child(uniq.toString()).setValue(data).addOnCompleteListener {
-                    Toast.makeText(ctx,"Rating added",Toast.LENGTH_LONG).show()
+                    ref.child(shopid).child("rating").addListenerForSingleValueEvent(object :ValueEventListener{
+                        override fun onCancelled(p0: DatabaseError) {
+                            TODO("Not yet implemented")
+                        }
+
+                        override fun onDataChange(p0: DataSnapshot) {
+                            var avg=0.0
+                            var r=0
+                            for (v in p0.children){
+                                var v=v.getValue(ratingModel::class.java)
+                                if (v != null) {
+                                    avg= v.ratin!!.plus(avg)
+                                    r=r+1
+                                }
+
+                            }
+                            avg=avg/r
+                            ref.child(shopid).child("avgrating").setValue(avg)
+                        }
+
+                    })
+
                 }
             }
             m.show()

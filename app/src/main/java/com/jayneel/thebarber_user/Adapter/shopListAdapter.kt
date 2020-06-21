@@ -20,6 +20,7 @@ class shopListAdapter(var ctx:Activity,var arlist:ArrayList<shopModule>):Recycle
         var imageback=v.imageView4
         var list_constrain=v.list_constrain
         var city=v.lblcity
+        var rating=v.ratingBar
 
     }
 
@@ -55,5 +56,7 @@ class shopListAdapter(var ctx:Activity,var arlist:ArrayList<shopModule>):Recycle
             int1.putExtra("shopunm",arlist[position].userName.toString())
             ctx.startActivity(int1)
         }
+        holder.rating.rating= arlist[position].avgrating!!
+
     }
 }
