@@ -10,9 +10,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.jayneel.thebarber_user.R
-import com.jayneel.thebarber_user.helper.bookingAdapter
+import com.jayneel.thebarber_user.Adapter.bookingAdapter
 import com.jayneel.thebarber_user.module.appinmrntMoule
-import com.jayneel.thebarber_user.module.userData
 import kotlinx.android.synthetic.main.activity_bookings.*
 
 class bookings : AppCompatActivity() {

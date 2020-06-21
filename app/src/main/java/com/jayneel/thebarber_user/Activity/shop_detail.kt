@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.jayneel.thebarber_user.R
-import com.jayneel.thebarber_user.helper.shopIteamAdapter
+import com.jayneel.thebarber_user.Adapter.shopIteamAdapter
 import com.jayneel.thebarber_user.module.appinmrntMoule
 import com.jayneel.thebarber_user.module.iteamModule
 import kotlinx.android.synthetic.main.activity_shop_detail.*

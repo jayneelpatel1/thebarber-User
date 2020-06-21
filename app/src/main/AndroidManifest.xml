@@ -8,9 +8,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         <activity android:name=".Activity.forget_Password" />
-        <activity android:name=".Activity.bookings" />
+        <activity android:name=".Activity.bookings"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"/>
         <activity
             android:name=".Activity.SplaceScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

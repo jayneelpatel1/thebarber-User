@@ -1,4 +1,4 @@
-package com.jayneel.thebarber_user.helper
+package com.jayneel.thebarber_user.Adapter
 
 import android.app.Activity
 import android.view.View
