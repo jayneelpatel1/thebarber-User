@@ -175,6 +175,7 @@
             android:drawablePadding="20dp"
             android:paddingLeft="10dp"
             android:layout_height="50sp"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/edittext_background"
@@ -215,6 +216,7 @@
                     android:id="@+id/radioButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:useMaterialThemeColors="true"
                     android:layout_marginLeft="0dp"
                     android:text="Male" />
                 <RadioButton
@@ -222,6 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
+                    app:useMaterialThemeColors="true"
                     android:layout_marginRight="33dp"
                     android:text="Female" />
 
@@ -246,7 +249,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20dp"
                 android:text="Sign up"
-                android:background="@drawable/custom_button"/>
+                android:background="@color/colorAccent"
+                />
         </LinearLayout>
 
     </LinearLayout>

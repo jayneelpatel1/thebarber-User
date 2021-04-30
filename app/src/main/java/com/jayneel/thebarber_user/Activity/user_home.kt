@@ -117,6 +117,7 @@ class user_home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                     var edt=sp.edit()
                     edt.clear()
                     edt.commit()
+                    mAuth!!.signOut()
                     startActivity(Intent(this, login::class.java))
                 }
             }
