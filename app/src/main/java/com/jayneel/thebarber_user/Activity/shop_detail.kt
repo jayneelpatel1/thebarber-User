@@ -55,6 +55,8 @@ class shop_detail : AppCompatActivity() {
         val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
         val formatted = current.format(formatter)
         chip3.text=formatted
+
+        //Second day
         val df = SimpleDateFormat("dd-MM-yyyy")
         val d: Date = df.parse(formatted.toString())
         val cal = Calendar.getInstance()
@@ -62,6 +64,16 @@ class shop_detail : AppCompatActivity() {
         cal.add(Calendar.DATE, 1)
         val newTime: String = df.format(cal.time)
         chip4.text=newTime
+
+        // Date value to 3rd chip
+        chip22.text=current.plusDays(2).format(formatter)
+
+        //Date value to 4th chip
+        chip23.text=current.plusDays(3).format(formatter)
+
+
+
+
 
         val myRef = database.getReference("Category")
         var data= arrayListOf<iteamModule>()

@@ -26,10 +26,10 @@
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
-        android:layout_width="331dp"
+        android:layout_width="0dp"
         android:layout_height="62dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:singleSelection="true">
@@ -49,6 +49,24 @@
             android:layout_height="wrap_content"
             android:text="Tommorow"
             android:textColor="#ad904e" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip22"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 day"
+            android:textColor="#ad904e" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip23"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 day"
+            android:textColor="#ad904e"
+            />
+
 
     </com.google.android.material.chip.ChipGroup>
 
